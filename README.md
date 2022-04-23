@@ -31,3 +31,5 @@ npm run start
 - [Chats](https://practicum-messenger.netlify.app/chats)
 - [404](https://practicum-messenger.netlify.app/404)
 - [500](https://practicum-messenger.netlify.app/500)
+
+Pull request link: https://github.com/hordiichukY/middle.messenger.praktikum.yandex/pull/1 
