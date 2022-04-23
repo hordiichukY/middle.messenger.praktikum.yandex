@@ -1,0 +1,14 @@
+.link {
+  display: block;
+  @include text(14px, $dark, 500, 24px);
+  text-align: center;
+  transition: 0.2s color;
+
+  &:hover {
+    color: $gray;
+  }
+
+  &.is-white {
+    color: $white;
+  }
+}

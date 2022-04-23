@@ -1,0 +1,29 @@
+{
+  "name": "project1",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run build && node server.js",
+    "build": "parcel build ./static/index.html --no-cache", 
+    "dev": "parcel ./static/index.html --port 3000 --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hordiichukY/middle.messenger.praktikum.yandex"
+  },
+  "author": "Yuliia Hordiichuk",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.4.1",
+    "@parcel/transformer-sass": "^2.4.1",
+    "parcel": "^2.4.1",
+    "parcel-transformer-hbs": "^1.0.4",
+    "prettier": "2.6.2",
+    "sharp": "^0.29.3"
+  },
+  "dependencies": {
+    "express": "^4.17.3", 
+    "handlebars": "^4.7.7" 
+  }
+}

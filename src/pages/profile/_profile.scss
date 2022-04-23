@@ -1,0 +1,62 @@
+.profile-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 60px 64px 60px 128px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__img-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    &::before {
+      content: 'Change';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $yellow;
+      border-radius: 100px;
+      @include text(16px, $dark, 500);
+    }
+  }
+
+  &__img {
+    display: block;
+    position: relative;
+    width: 130px;
+    height: 130px;
+    background-color: $chatColorDark;
+    border-radius: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    z-index: 1;
+    &:hover {
+      opacity: 0;
+    }
+  }
+
+  &__name {
+    margin-top: 20px;
+    @include text(15px, $dark, 600);
+  }
+
+  &__inputs {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 280px);
+    gap: 20px 40px;
+    justify-content: center;
+  }
+
+  &__buttons {
+    margin-top: 40px;
+    display: grid;
+    gap: 20px;
+  }
+}

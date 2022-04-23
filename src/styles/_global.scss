@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto Slab', serif;
+  line-height: 1.2;
+  font-weight: 400;
+  font-size: 16px;
+  color: #0d0d0d;
+  * > * {
+    box-sizing: border-box;
+  }
+}
+
+main {
+  flex-grow: 1;
+}
