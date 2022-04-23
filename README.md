@@ -20,8 +20,8 @@ npm run start
 
 ## Links
 
-[Mockup](https://www.figma.com/file/HgnSbCdvzqUgQ6iM2po1DN/messenger)
-[Demo](https://practicum-messenger.netlify.app/)
+- [Mockup](https://www.figma.com/file/HgnSbCdvzqUgQ6iM2po1DN/messenger)
+- [Demo](https://practicum-messenger.netlify.app/)
 
 ## Project pages
 
