@@ -10,12 +10,12 @@ const profileData = {
   ),
   userName: 'Ms Cat',
   changeDataBtnProps: {
-    class: 'is-small',
+    modifier: 'is-small',
     type: 'button',
     title: 'Change data',
   },
   changePasswordBtnProps: {
-    class: 'is-small',
+    modifier: 'is-small',
     type: 'button',
     title: 'Change password',
   },

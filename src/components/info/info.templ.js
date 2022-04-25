@@ -6,7 +6,7 @@ export const InfoPage = ({ title, text }) => {
   Handlebars.registerPartial(
     'link',
     Link({
-      class: 'link is-white',
+      class: 'link link_is-white',
       href: '/chats',
       title: 'Back to chats',
     })
