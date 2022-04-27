@@ -1,0 +1,32 @@
+.button {
+  width: 280px;
+  height: 50px;
+
+  background: $yellow;
+  @include text(18px, $dark, 600, 50px);
+  text-align: center;
+  @include ellipsis;
+  border-radius: 8px;
+  border: none;
+  filter: $btnShadow;
+  cursor: pointer;
+  transition: 0.2s all;
+
+  &_is-small {
+    width: 200px;
+    height: 40px;
+    @include text(14px, $dark, 600, 40px);
+  }
+
+  &:hover,
+  &:active {
+    background-color: $gray;
+    color: $yellow;
+  }
+
+  &:disabled {
+    background-color: $lightGray;
+    color: $white;
+    pointer-events: none;
+  }
+}

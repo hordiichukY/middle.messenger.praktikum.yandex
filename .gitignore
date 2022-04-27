@@ -1,0 +1,7 @@
+.idea
+.parcel-cache
+node_modules
+dist
+.env
+.prettierrc.json
+.DS_Store
