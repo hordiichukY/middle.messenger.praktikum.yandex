@@ -1,0 +1,20 @@
+{{#if disabled}}
+  <input
+    class='form-input'
+    type='{{type}}'
+    name='{{name}}'
+    placeholder='{{placeholder}}'
+    required='{{required}}'
+    id='{{id}}'
+    disabled='{{disabled}}'
+  />
+{{else}}
+  <input
+    class='form-input'
+    type='{{type}}'
+    name='{{name}}'
+    placeholder='{{placeholder}}'
+    required='{{required}}'
+    id='{{id}}'
+  />
+{{/if}}

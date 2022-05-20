@@ -9,6 +9,7 @@ $chatColorDark: #999999;
 
 $filterYellow: invert(74%) sepia(100%) saturate(287%) hue-rotate(358deg)
   brightness(106%) contrast(102%);
+$btnShadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 $breakpoints: (
   bp540: 540px,
