@@ -21,7 +21,7 @@ function queryStringify(data: DataT) {
   return Object.entries(data).map(([key, value]) => key + '=' + value).join('&');
 }
 
-class HTTPTransport {
+export class HTTPTransport {
   get = (url: string, options: OptionsT) => {
     const { data } = options; 
     if(data) {
