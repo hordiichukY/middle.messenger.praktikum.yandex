@@ -6,7 +6,8 @@ type ButtonProps = {
   type?: string, 
   title?: string,
   events?: {
-    click: (event?: Event) => void
+    click?: (event?: Event) => void, 
+    submit?: (event?: Event) => void,
   } 
 }
 

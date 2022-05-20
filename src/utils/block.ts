@@ -28,51 +28,51 @@ class Block<TProps = Record<string, unknown>> {
     this.id = nanoid();
   
     this._meta = { props };
-    this.props = this._makePropsProxy(props);
+    this.props = this.makePropsProxy(props);
 
     this.initChildren();
     this.eventBus = () => eventBus;
-    this._registerEvents(eventBus);
+    this.registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
 
   initChildren() {};
 
-  _registerEvents(eventBus: EventBus) {
+  private registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  init() {
+  protected init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {
+  protected componentDidMount() {
   }
 
-  dispatchComponentDidMount() {
+  protected dispatchComponentDidMount() {
       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
     if(this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
     }
   }
 
-  componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  protected componentDidUpdate(oldProps: TProps, newProps: TProps) {
     if(oldProps !== newProps) {
       return true;
     }
   }
 
-  setProps(nextProps: TProps) {
+  protected setProps(nextProps: TProps) {
     if (!nextProps) {
       return;
     }
@@ -84,7 +84,7 @@ class Block<TProps = Record<string, unknown>> {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -92,18 +92,18 @@ class Block<TProps = Record<string, unknown>> {
 
     this._element = newElement;
 
-    this._addEvents();
+    this.addEvents();
   }
 
-  render() {
+  protected render() {
     return new DocumentFragment();
   }
 
-  getContent() {
+  protected getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  private makePropsProxy(props: any) {
     const self = this;
 
     return new Proxy(props, {
@@ -121,11 +121,11 @@ class Block<TProps = Record<string, unknown>> {
     })
   }
 
-  _createDocumentElement(tagName:string) {
+  private createDocumentElement(tagName:string) {
     return document.createElement(tagName);
   }
 
-  _removeEvents() {
+  private removeEvents() {
     const events: Events = (this.props as any).events as Events;
     if(!events || !this._element) {
       return;
@@ -138,7 +138,7 @@ class Block<TProps = Record<string, unknown>> {
     })
   }
   
-  _addEvents() {
+  private addEvents() {
     const events: Events = (this.props as any).events as Events;
     if(!events || !this._element) {
       return;
@@ -151,16 +151,16 @@ class Block<TProps = Record<string, unknown>> {
     })
   }
 
-  show() {
+  protected show() {
     this.getContent().style.display = "block";
   }
 
-  hide() {
+  protected hide() {
     this.getContent().style.display = "none";
   }
 
-  compile(template: (context: Cotnext) => string, context: Cotnext) {
-    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+  protected compile(template: (context: Cotnext) => string, context: Cotnext) {
+    const fragment = this.createDocumentElement('template') as HTMLTemplateElement;
     
     Object.entries(this.children).forEach(([key, child ]) => {
       if(Array.isArray(child)) {

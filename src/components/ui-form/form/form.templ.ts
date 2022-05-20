@@ -50,7 +50,7 @@ export class Form extends Block<FormData> {
       type: "submit",
       title: this.props.buttonTitle,
       events: {
-        click: (event) => {
+        submit: (event) => {
           this.logData(); 
           event?.preventDefault();
         },
