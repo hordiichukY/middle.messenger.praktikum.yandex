@@ -1,0 +1,18 @@
+<form class='profile-form'>
+  <div class='profile-form__img-wrap'>
+    <img src='{{avatarSrc}}' alt='Avatar' class='profile-form__img' />
+  </div>
+  <p class='profile-form__name'>{{userName}}</p>
+
+  <div class='profile-form__inputs'>
+    {{#each fields}}
+      {{{this}}}
+    {{/each}}
+  </div>
+
+  <div class='profile-form__buttons'>
+    {{{buttonChangeData}}}
+    {{{buttonChangePass}}}
+    {{{link}}}
+  </div>
+</form>
