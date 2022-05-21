@@ -8,9 +8,6 @@ export type ChatSidebarProps =  {
 }
 
 export class ChatSidebar extends Block<ChatSidebarProps> {
-  constructor(props: ChatSidebarProps) {
-    super(props)
-  }
   initChildren() {
     this.children.navigation = new ChatNav({}); 
     this.children.chats = this.props.chatProps

@@ -11,10 +11,6 @@ export type ChatItemProps = {
 }
 
 export class ChatItem extends Block<ChatItemProps> {
-  constructor(props: ChatItemProps) {
-    super(props)
-  }
-
   render() {
     return this.compile(chatItemTmpl, {...this.props})
   }

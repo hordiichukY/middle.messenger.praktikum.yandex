@@ -8,10 +8,6 @@ type InfoPageProps  = {
 }
 
 export class InfoPage extends Block<InfoPageProps> {
-  constructor(props: InfoPageProps) {
-    super(props)
-  }
-
   initChildren(): void {
     this.children.link = new Link({
       class: 'link link_is-white',

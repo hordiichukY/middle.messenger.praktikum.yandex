@@ -1,11 +1,13 @@
-const METHODS = {
-  GET: 'GET',
-  POST: 'POST', 
-  PUT: 'PUT', 
-  DELETE: 'DELETE'
+enum METHODS {
+  GET = 'GET',
+  POST = 'POST', 
+  PUT = 'PUT', 
+  DELETE = 'DELETE'
 };
+
 type DataT = Record<string, unknown>
 type HeadersT = Record<string, string>
+
 type OptionsT = {
   data?: DataT,
   timeout?: number,

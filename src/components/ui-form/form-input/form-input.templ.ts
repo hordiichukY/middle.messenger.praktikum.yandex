@@ -1,10 +1,11 @@
 import formInputTmpl from './form-input.hbs';
 import Block from '../../../utils/block';
 
+type InputName = 'first_name' | 'second_name' | 'login' | 'email' | 'password' | 'phone' | 'retype';
 export type FormInputProps  = {
   id?: string
   type?: string, 
-  name: string, 
+  name: InputName, 
   placeholder?: string, 
   required?: string, 
   error? : string, 
@@ -19,9 +20,6 @@ export type FormInputProps  = {
 }
 
 export class FormInput extends Block<FormInputProps> {
-  constructor(props: FormInputProps) {
-    super(props)
-  }
   render() {
     return this.compile(formInputTmpl, {...this.props})
   }

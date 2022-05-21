@@ -1,4 +1,6 @@
-type Patterns = Record<string, RegExp>
+type InputName = 'first_name' | 'second_name' | 'login' | 'email' | 'password' | 'phone' | 'retype';
+type InputPatternsName = Exclude<InputName, "retype">;
+type Patterns = Record<InputPatternsName, RegExp>; 
 
 const patterns: Patterns = {
   first_name: /^[A-ZА-Я][a-zа-я-]*$/,
@@ -10,17 +12,14 @@ const patterns: Patterns = {
 }
 
 
-export const validate = (inputName: string, valueToValidate: string) => {
+export const validate = (inputName: InputName, valueToValidate: string) => {
   if(inputName === 'retype') {
     const passwordElement = document.querySelector("[name='password']") as HTMLInputElement;
-    if(passwordElement.value === valueToValidate) {
-      return true; 
-    }
-    return false;
+    return passwordElement.value === valueToValidate;
   }
 
   if(!patterns[inputName] || !valueToValidate) {
-    return;
+    return false;
   }
   return new RegExp(patterns[inputName]).test(valueToValidate);
 }

@@ -2,7 +2,7 @@ type CallbackFn = (...args: unknown[]) => void;
 type Listeners = Record<string, CallbackFn[]>
 
 export class EventBus {
-  listeners: Listeners;
+  private listeners: Listeners;
   
   constructor() {
     this.listeners = {};

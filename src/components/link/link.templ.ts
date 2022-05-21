@@ -11,10 +11,6 @@ export type LinkProps = {
 }
 
 export class Link extends Block<LinkProps> {
-  constructor(props: LinkProps) {
-    super(props)
-  }
-
   render () {
     return this.compile(linkTmpl, {...this.props})
   }

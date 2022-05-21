@@ -14,17 +14,13 @@ type formFieldProps = {
 }
 
 export class ProfileFormField extends Block<formFieldProps> {
-  constructor(props: formFieldProps) {
-    super(props)
-  }
-
   validateInputValue(value: string) {
     const inputName = this.props.inputProps.name; 
     const validateForm  = this.props.validateForm; 
     if(!inputName) {
      return 
     }
-    const inputValueIsValid = validate(inputName, value) as boolean;  
+    const inputValueIsValid = validate(inputName, value);  
     if(this.children.error instanceof Block) {
       if(inputValueIsValid) {
         this.children.error.setProps({modifier: 'hide'})

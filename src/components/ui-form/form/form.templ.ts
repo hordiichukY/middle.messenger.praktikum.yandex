@@ -18,11 +18,6 @@ const inputsValidationStatus: inputsValidation = {};
 let formIsValid = false; 
 
 export class Form extends Block<FormData> {
-  
-  constructor(props: FormData) {
-    super(props);
-  }
-
   validateForm(inputName:string, isValid:boolean) {
     inputsValidationStatus[inputName] = isValid;
     formIsValid = Object.values(inputsValidationStatus).every(value => value);

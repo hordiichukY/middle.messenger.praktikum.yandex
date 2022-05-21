@@ -72,7 +72,7 @@ class Block<TProps = Record<string, unknown>> {
     }
   }
 
-  protected setProps(nextProps: TProps) {
+  public setProps(nextProps: TProps) {
     if (!nextProps) {
       return;
     }
@@ -151,11 +151,11 @@ class Block<TProps = Record<string, unknown>> {
     })
   }
 
-  protected show() {
+  show() {
     this.getContent().style.display = "block";
   }
 
-  protected hide() {
+  hide() {
     this.getContent().style.display = "none";
   }
 

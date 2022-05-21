@@ -16,10 +16,6 @@ const inputsValidationStatus: inputsValidation = {};
 let formIsValid = false; 
 
 export class ProfileForm extends Block<profileFormData>{
-  constructor(props: profileFormData) {
-    super(props)
-  }
-
   validateForm(inputName:string, isValid:boolean) {
     inputsValidationStatus[inputName] = isValid;
     formIsValid = Object.values(inputsValidationStatus).every(value => value);
@@ -35,15 +31,16 @@ export class ProfileForm extends Block<profileFormData>{
   activateInputs() {
     const inputs = Array.from(document.getElementsByTagName("input")); 
     inputs.forEach(input => input.disabled = false)
-    this.children.buttonChangeData.setProps({
-      type: 'submit',
-      title: 'Save data'
-    })
     if(this.children.link instanceof Block &&
-       this.children.buttonChangePass  instanceof Block
-    ){
+      this.children.buttonChangePass instanceof Block
+    ) {
+      this.children.buttonChangeData.setProps({
+        type: 'submit',
+        title: 'Save data'
+      })
+      
       this.children.link.hide()
-      this.children.buttonChangePass.hide()
+      this.children.buttonChangePass.hide()  
     }
     
   }

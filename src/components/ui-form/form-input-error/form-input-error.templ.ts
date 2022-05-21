@@ -7,10 +7,6 @@ type FormInputErrorProps = {
 }; 
 
 export class FormInputError extends Block<FormInputErrorProps> {
-  constructor(props: FormInputErrorProps) {
-    super(props)
-  }
-
   render() {
     return this.compile(FormInputErrorTmpl, {...this.props})
   }
