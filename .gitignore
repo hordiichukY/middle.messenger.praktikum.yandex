@@ -3,5 +3,4 @@
 node_modules
 dist
 .env
-.prettierrc.json
 .DS_Store

@@ -24,7 +24,8 @@
     color: $yellow;
   }
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
     background-color: $lightGray;
     color: $white;
     pointer-events: none;
