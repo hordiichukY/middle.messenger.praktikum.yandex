@@ -99,7 +99,7 @@ class Block<TProps = Record<string, unknown>> {
     return new DocumentFragment();
   }
 
-  protected getContent() {
+  public getContent() {
     return this.element;
   }
 

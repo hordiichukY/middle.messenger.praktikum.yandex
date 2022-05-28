@@ -1,12 +1,12 @@
-import { Form } from '../../components/ui-form/form';
-import { LoginInputsProps } from '../../helpers/form-variables';
-import Block from '../../utils/block';
-import loginPageTmpl from './login.hbs';
- 
+import { Form } from '../../components/ui-form/form'
+import { LoginInputsProps } from '../../helpers/form-variables'
+import Block from '../../utils/block'
+import loginPageTmpl from './login.hbs'
+
 export class LoginPage extends Block {
   initChildren() {
     this.children.loginForm = new Form({
-      title: 'Login', 
+      title: 'Login',
       buttonTitle: 'Sign in',
       linkProps: {
         href: '/registration',
@@ -19,6 +19,4 @@ export class LoginPage extends Block {
   render() {
     return this.compile(loginPageTmpl, {})
   }
-
-
 }

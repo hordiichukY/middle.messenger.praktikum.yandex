@@ -6,7 +6,7 @@ export class ChatNav extends Block {
   initChildren(): void {
     this.children.link = new Link({
       class: 'link chat-nav__link',
-      href: '/profile',
+      href: '/settings',
       title: 'Profile',
     })
   }
