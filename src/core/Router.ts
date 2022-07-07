@@ -1,4 +1,4 @@
-import { BlockDerivedConstructor, Route } from './route'
+import { BlockDerivedConstructor, Route } from './Route'
 
 export class Router {
   private static __instance: Router

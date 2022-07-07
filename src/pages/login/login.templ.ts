@@ -1,6 +1,6 @@
 import { Form } from '../../components/ui-form/form'
-import { LoginInputsProps } from '../../helpers/form-variables'
-import Block from '../../utils/block'
+import { LoginInputsProps } from '../../variables/form-variables'
+import Block from '../../core/Block'
 import loginPageTmpl from './login.hbs'
 
 export class LoginPage extends Block {
@@ -9,7 +9,7 @@ export class LoginPage extends Block {
       title: 'Login',
       buttonTitle: 'Sign in',
       linkProps: {
-        href: '/registration',
+        href: '/sign-up',
         title: 'Create account',
       },
       inputFieldProps: LoginInputsProps,

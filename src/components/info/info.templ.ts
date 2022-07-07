@@ -1,9 +1,9 @@
-import infoTmpl from './info.hbs';
-import { Link } from '../link';
-import Block from '../../utils/block';
+import infoTmpl from './info.hbs'
+import { Link } from '../link'
+import Block from '../../core/Block'
 
-type InfoPageProps  = {
-  title: string, 
+type InfoPageProps = {
+  title: string
   text: string
 }
 
@@ -17,6 +17,6 @@ export class InfoPage extends Block<InfoPageProps> {
   }
 
   render() {
-    return this.compile(infoTmpl, {...this.props})
+    return this.compile(infoTmpl, { ...this.props })
   }
-};
+}

@@ -1,15 +1,15 @@
-import { Form } from '../../components/ui-form/form';
-import registrationPageTmpl from './registration.hbs';
-import { RegistrtationInputProps } from '../../helpers/form-variables';
-import Block from '../../utils/block';
+import { Form } from '../../components/ui-form/form'
+import registrationPageTmpl from './registration.hbs'
+import { RegistrtationInputProps } from '../../variables/form-variables'
+import Block from '../../core/Block'
 
 export class RegistrationPage extends Block {
   initChildren() {
     this.children.registrationForm = new Form({
-      title: 'Registration', 
+      title: 'Registration',
       buttonTitle: 'Sign up',
       linkProps: {
-        href: '/login',
+        href: '/',
         title: 'Login',
       },
       inputFieldProps: RegistrtationInputProps,

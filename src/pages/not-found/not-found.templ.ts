@@ -1,6 +1,6 @@
-import notFoundPageTmpl from './not-found.hbs';
-import { InfoPage } from '../../components/info';
-import Block from '../../utils/block';
+import notFoundPageTmpl from './not-found.hbs'
+import { InfoPage } from '../../components/info'
+import Block from '../../core/Block'
 
 export class NotFoundPage extends Block {
   initChildren(): void {
@@ -10,6 +10,6 @@ export class NotFoundPage extends Block {
     })
   }
   render() {
-    return this.compile(notFoundPageTmpl,{})
+    return this.compile(notFoundPageTmpl, {})
   }
 }

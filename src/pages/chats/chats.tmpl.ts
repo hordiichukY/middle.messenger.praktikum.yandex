@@ -1,12 +1,12 @@
-import chatsPageTmpl from './chats.hbs';
-import { ChatSidebar } from '../../components/ui-chat/chat-sidebar';
-import { chatList } from '../../helpers/chat-variables';
-import Block from '../../utils/block';
+import chatsPageTmpl from './chats.hbs'
+import { ChatSidebar } from '../../components/ui-chat/chat-sidebar'
+import { chatList } from '../../variables/chat-variables'
+import Block from '../../core/Block'
 
 export class ChatsPage extends Block {
-  initChildren(){
+  initChildren() {
     this.children.sidebar = new ChatSidebar({
-      chatProps: chatList
+      chatProps: chatList,
     })
   }
 
@@ -14,4 +14,3 @@ export class ChatsPage extends Block {
     return this.compile(chatsPageTmpl, {})
   }
 }
-

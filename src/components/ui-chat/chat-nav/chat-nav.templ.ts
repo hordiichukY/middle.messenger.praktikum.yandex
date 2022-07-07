@@ -1,6 +1,6 @@
-import chatNavTmpl from './chat-nav.hbs';
-import { Link } from '../../link';
-import Block from '../../../utils/block';
+import chatNavTmpl from './chat-nav.hbs'
+import { Link } from '../../link'
+import Block from '../../../core/Block'
 
 export class ChatNav extends Block {
   initChildren(): void {
@@ -15,4 +15,3 @@ export class ChatNav extends Block {
     return this.compile(chatNavTmpl, {})
   }
 }
-

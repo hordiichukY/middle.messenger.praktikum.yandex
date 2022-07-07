@@ -1,5 +1,4 @@
-import Block from './block'
-import { isEqual } from './isEqual'
+import Block from './Block'
 import { renderDOM } from './renderDOM'
 
 type Props = {
@@ -32,7 +31,10 @@ export class Route {
   }
 
   match(pathname: string) {
-    return isEqual(pathname, this._pathname)
+    if (pathname === this._pathname) {
+      return true
+    }
+    return false
   }
 
   render() {
