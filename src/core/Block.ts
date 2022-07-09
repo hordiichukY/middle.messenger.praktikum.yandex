@@ -1,5 +1,7 @@
 import { EventBus } from './EventBus'
 import { nanoid } from 'nanoid'
+import { isEqual } from '../utils/isEqual'
+import { PlainObject } from '../utils/helpers'
 
 type Events = Record<string, () => void>
 type Cotnext = Record<string, unknown>
@@ -65,9 +67,7 @@ class Block<TProps = Record<string, unknown>> {
   }
 
   protected componentDidUpdate(oldProps: TProps, newProps: TProps) {
-    if (oldProps !== newProps) {
-      return true
-    }
+    return isEqual(oldProps as PlainObject, newProps as PlainObject)
   }
 
   public setProps(nextProps: TProps) {
