@@ -1,12 +1,14 @@
-import { nanoid } from "nanoid";
-export const LoginInputsProps = [
+import { nanoid } from 'nanoid'
+import { FormInputProps } from '../components/ui-form/form-input'
+
+export const LoginInputsProps: FormInputProps[] = [
   {
     type: 'text',
     name: 'login',
     placeholder: 'Enter login',
     required: 'required',
     error: 'Login is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'password',
@@ -14,18 +16,18 @@ export const LoginInputsProps = [
     placeholder: 'Enter password',
     required: 'required',
     error: 'Password is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
-];
+]
 
-export const RegistrtationInputProps = [
+export const RegistrtationInputProps: FormInputProps[] = [
   {
     type: 'email',
     name: 'email',
     placeholder: 'Enter email',
     required: 'required',
     error: 'Email is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'text',
@@ -33,7 +35,7 @@ export const RegistrtationInputProps = [
     placeholder: 'Enter login',
     required: 'required',
     error: 'Login is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'text',
@@ -41,7 +43,7 @@ export const RegistrtationInputProps = [
     placeholder: 'Enter name',
     required: 'required',
     error: 'First name is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'text',
@@ -49,7 +51,7 @@ export const RegistrtationInputProps = [
     placeholder: 'Enter surname',
     required: 'required',
     error: 'Second name is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'tel',
@@ -57,7 +59,7 @@ export const RegistrtationInputProps = [
     placeholder: 'Enter phone number',
     required: 'required',
     error: 'Invalid phone number',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'password',
@@ -65,7 +67,7 @@ export const RegistrtationInputProps = [
     placeholder: 'Enter password',
     required: 'required',
     error: 'Password is not correct',
-    id: nanoid(6)
+    id: nanoid(6),
   },
   {
     type: 'password',
@@ -73,97 +75,100 @@ export const RegistrtationInputProps = [
     placeholder: 'Repeat password',
     required: 'required',
     error: 'Passwords do not match',
-    id: nanoid(6)
+    id: nanoid(6),
   },
-];
+]
 
 export const profileInputProps = [
   {
-    id: 'email',
+    id: nanoid(6),
     label: 'Email',
-    value: 'cat@gmail.com',
     type: 'email',
     name: 'email',
     placeholder: 'Enter email',
     required: 'required',
     error: 'Email is not correct',
-    disabled: 'disabled' 
+    disabled: 'disabled',
   },
   {
-    id: 'login',
+    id: nanoid(6),
     label: 'Login',
-    value: 'bestcat',
     type: 'text',
     name: 'login',
     placeholder: 'Enter login',
     required: 'required',
     error: 'Login is not correct',
-    disabled: 'disabled'  
+    disabled: 'disabled',
   },
   {
-    id: 'first_name',
+    id: nanoid(6),
     label: 'Name',
-    value: 'Miaw',
     type: 'text',
     name: 'first_name',
     placeholder: 'Enter name',
     required: 'required',
     error: 'First name is not correct',
-    disabled: 'disabled'
+    disabled: 'disabled',
   },
   {
-    id: 'second_name',
+    id: nanoid(6),
     label: 'Surname',
-    value: 'Mrrrr',
     type: 'text',
     name: 'second_name',
     placeholder: 'Enter surname',
     required: 'required',
     error: 'Second name is not correct',
-    disabled: 'disabled'
+    disabled: 'disabled',
   },
   {
-    id: 'chat_name',
+    id: nanoid(6),
     label: 'Chat name',
-    value: 'Cat',
     type: 'text',
-    name: 'chat_name',
+    name: 'display_name',
     placeholder: 'Enter your chat name',
     required: 'required',
-    disabled: 'disabled'
+    disabled: 'disabled',
   },
   {
-    id: 'phone',
+    id: nanoid(6),
     label: 'Phone number',
-    value: '+123456789',
     type: 'tel',
     name: 'phone',
     placeholder: 'Enter phone number',
     required: 'required',
     error: 'Invalid phone number',
-    disabled: 'disabled'
+    disabled: 'disabled',
   },
-];
+]
 
 export const profilePasswordProps = [
   {
     type: 'password',
-    name: 'old_password',
-    placeholder: 'Enter password',
+    label: 'Old password',
+    id: nanoid(6),
+    name: 'oldPassword',
+    placeholder: 'Enter old password',
     required: 'required',
+    disabled: '',
   },
   {
     type: 'password',
-    name: 'password',
-    placeholder: 'Enter password',
+    label: 'New password',
+    id: nanoid(6),
+    name: 'newPassword',
+    placeholder: 'Enter new password',
     required: 'required',
     error: 'Password is not correct',
+    disabled: '',
   },
   {
     type: 'password',
+    label: 'Retype new password',
+    id: nanoid(6),
     name: 'retype',
-    placeholder: 'Repeat password',
+    placeholder: 'Retype new password',
     required: 'required',
     error: 'Passwords do not match',
+    disabled: '',
   },
 ]

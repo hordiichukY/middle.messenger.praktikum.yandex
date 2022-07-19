@@ -1,3 +1,5 @@
+import { URLS } from '../variables/api'
+
 enum METHODS {
   GET = 'GET',
   POST = 'POST',
@@ -16,7 +18,7 @@ type OptionsT = {
 }
 
 export class HTTPTransport {
-  static API_URL = 'https://ya-praktikum.tech/api/v2'
+  static API_URL = URLS.API_URL
   protected endpoint: string
 
   constructor(endpoint: string) {
@@ -83,9 +85,12 @@ export class HTTPTransport {
       xhr.ontimeout = () => reject({ reason: 'timeout' })
 
       xhr.responseType = 'json'
+      const isFormData = data instanceof FormData
 
       if (method === METHODS.GET || !data) {
         xhr.send()
+      } else if (isFormData) {
+        xhr.send(data)
       } else {
         xhr.send(JSON.stringify(data))
       }

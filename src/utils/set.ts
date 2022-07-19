@@ -6,22 +6,19 @@ export function set(
   path: string,
   value: unknown
 ): PlainObject | unknown {
-  if (typeof path !== 'string') {
-    throw 'path must be string'
-  }
   if (!isPlainObject(object)) {
     return object
   }
 
-  const splittedPath = path.split('.')
+  if (typeof path !== 'string') {
+    throw new Error('path must be string')
+  }
 
-  const o = splittedPath.slice(0, -1).reduceRight(
-    (acc, el) => {
-      const origin = { [el]: acc }
-      return origin
-    },
-    { [splittedPath[splittedPath.length - 1]]: value }
+  const result = path.split('.').reduceRight<PlainObject>(
+    (acc, key) => ({
+      [key]: acc,
+    }),
+    value as any
   )
-
-  return merge(object as PlainObject, o)
+  return merge(object as PlainObject, result)
 }

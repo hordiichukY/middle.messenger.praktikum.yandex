@@ -1,10 +1,6 @@
 import Block from './Block'
 import { renderDOM } from './renderDOM'
 
-type Props = {
-  rootQuery: string
-}
-
 export type BlockDerivedConstructor = { new (): Block }
 
 export class Route {
@@ -13,8 +9,7 @@ export class Route {
 
   constructor(
     protected _pathname: string,
-    protected _blockConstructor: BlockDerivedConstructor,
-    protected _props: Props
+    protected _blockConstructor: BlockDerivedConstructor
   ) {}
 
   navigate(pathname: string) {
@@ -31,18 +26,14 @@ export class Route {
   }
 
   match(pathname: string) {
-    if (pathname === this._pathname) {
-      return true
-    }
-    return false
+    return pathname === this._pathname
   }
 
   render() {
-    if (this._block) {
-      this._block.show()
-      return
+    if (!this._block) {
+      this._block = new this._blockConstructor()
     }
-    this._block = new this._blockConstructor()
-    renderDOM(this._props.rootQuery, this._block)
+    this._block.show()
+    renderDOM(this._block)
   }
 }

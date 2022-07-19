@@ -1,7 +1,7 @@
 import buttonTmpl from './button.hbs'
 import Block from '../../core/Block'
 
-type ButtonProps = {
+export type ButtonProps = {
   class?: string
   type?: string
   title?: string

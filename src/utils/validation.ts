@@ -6,7 +6,9 @@ type InputName =
   | 'password'
   | 'phone'
   | 'retype'
-type InputPatternsName = Exclude<InputName, 'retype'>
+  | 'newPassword'
+  | 'oldPassword'
+type InputPatternsName = Exclude<InputName, 'retype' | 'oldPassword'>
 type Patterns = Record<InputPatternsName, RegExp>
 
 const patterns: Patterns = {
@@ -16,14 +18,26 @@ const patterns: Patterns = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ /* eslint-disable-line */,
   password: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/,
   phone: /^[+]?[0-9]{10,15}$/,
+  newPassword:
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/ /* eslint-disable-line */,
 }
 
 export const validate = (inputName: InputName, valueToValidate: string) => {
+  if (inputName === 'oldPassword') {
+    return true
+  }
   if (inputName === 'retype') {
     const passwordElement = document.querySelector(
       "[name='password']"
     ) as HTMLInputElement
-    return passwordElement.value === valueToValidate
+
+    const newPasswordElement = document.querySelector(
+      "[name='newPassword']"
+    ) as HTMLInputElement
+
+    const activePassword = passwordElement ?? newPasswordElement
+
+    return activePassword.value === valueToValidate
   }
 
   if (!patterns[inputName] || !valueToValidate) {

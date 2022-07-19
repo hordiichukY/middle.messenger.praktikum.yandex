@@ -1,26 +1,31 @@
 import Block from '../../../core/Block'
 import formTmpl from './form.hbs'
-import { Button } from '../../button'
+import { Button, ButtonProps } from '../../button'
 import { Link, LinkProps } from '../../link'
 import { FormField } from '../form-field'
 import { FormInputProps } from '../form-input'
 
 type FormData = {
   title: string
-  buttonTitle: string
+  buttonProps: ButtonProps
   linkProps: LinkProps
   inputFieldProps: FormInputProps[]
+  inputsValidationStatus: Record<string, unknown>
 }
-type FormValues = Record<string, string>
-type inputsValidation = Record<string, boolean>
 
-const inputsValidationStatus: inputsValidation = {}
 let formIsValid = false
-
 export class Form extends Block<FormData> {
+  constructor(props: FormData) {
+    // todo change validation method
+    super({ ...props, ...{ inputsValidationStatus: {} } })
+  }
+
   validateForm(inputName: string, isValid: boolean) {
-    inputsValidationStatus[inputName] = isValid
-    formIsValid = Object.values(inputsValidationStatus).every((value) => value)
+    this.props.inputsValidationStatus[inputName] = isValid
+
+    formIsValid = Object.values(this.props.inputsValidationStatus).every(
+      (value) => value
+    )
     if (this.children.button instanceof Block) {
       if (formIsValid) {
         this.children.button.setProps({ class: '' })
@@ -30,26 +35,11 @@ export class Form extends Block<FormData> {
     }
   }
 
-  logData() {
-    const formData: FormValues = {}
-    const inputs = Array.from(document.getElementsByTagName('input'))
-    inputs.forEach((input) => {
-      formData[input.name] = input.value
-    })
-    console.log(formData)
-  }
-
   initChildren() {
     this.children.button = new Button({
       class: 'disabled',
       type: 'submit',
-      title: this.props.buttonTitle,
-      events: {
-        click: (event) => {
-          this.logData()
-          event?.preventDefault()
-        },
-      },
+      ...this.props.buttonProps,
     })
 
     this.children.link = new Link({
@@ -58,7 +48,8 @@ export class Form extends Block<FormData> {
     })
 
     this.children.fields = this.props.inputFieldProps.map((props) => {
-      inputsValidationStatus[props.name] = false
+      this.props.inputsValidationStatus[props.name] = false
+
       return new FormField({
         inputProps: props,
         validateForm: this.validateForm.bind(this),

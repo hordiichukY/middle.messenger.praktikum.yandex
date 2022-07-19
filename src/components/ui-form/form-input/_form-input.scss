@@ -23,6 +23,10 @@
     &::placeholder {
       color: $white;
     }
+
+    & + .form-input__error {
+      display: none;
+    }
   }
 
   &__error {

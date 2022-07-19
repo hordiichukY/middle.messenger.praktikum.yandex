@@ -1,1 +1,1 @@
-export { Button } from './button.templ'; 
+export { Button, ButtonProps } from './button.templ'

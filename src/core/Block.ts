@@ -61,7 +61,7 @@ class Block<TProps = Record<string, unknown>> {
   }
 
   private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+    if (!this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
     }
   }
@@ -149,7 +149,7 @@ class Block<TProps = Record<string, unknown>> {
   }
 
   show() {
-    this.getContent().style.display = 'block'
+    this.getContent().style.display = 'flex'
   }
 
   hide() {

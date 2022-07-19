@@ -3,7 +3,6 @@ import Block from '../../core/Block'
 
 export type LinkProps = {
   class?: string
-  href: string
   title: string
   events?: {
     click: () => void

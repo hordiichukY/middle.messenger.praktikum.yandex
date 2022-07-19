@@ -1,35 +1,31 @@
-import { BlockDerivedConstructor, Route } from './Route'
+import { Route } from './Route'
 
 export class Router {
   private static __instance: Router
 
-  private _rootQuery: string
   private routes: Route[] = []
   private history: History = window.history
   private _currentRoute: Route | null = null
 
-  constructor(rootQuery: string) {
+  constructor() {
     if (Router.__instance) {
       return Router.__instance
     }
-
-    this._rootQuery = rootQuery
 
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     Router.__instance = this
   }
 
-  use(pathname: string, blockConstructor: BlockDerivedConstructor) {
-    const route = new Route(pathname, blockConstructor, {
-      rootQuery: this._rootQuery,
-    })
+  // todo blockConstructor: BlockDerivedConstructor => fix ts
+  use(pathname: string, blockConstructor: any) {
+    const route = new Route(pathname, blockConstructor)
     this.routes.push(route)
     return this
   }
 
   start() {
-    window.onpopstate = () => {
-      this._onRoute(window.location.pathname)
+    window.onpopstate = (event) => {
+      this._onRoute((event.currentTarget as Window).location.pathname)
     }
     this._onRoute(window.location.pathname)
   }
@@ -60,6 +56,9 @@ export class Router {
   }
 
   getRoute(pathname: string) {
-    return this.routes.find((route) => route.match(pathname))
+    const route = this.routes.find((route) => route.match(pathname))
+    return route || this.routes.find((route) => route.match('*'))
   }
 }
+
+export default new Router()

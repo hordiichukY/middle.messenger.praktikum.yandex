@@ -1,6 +1,6 @@
 import FormFieldTmpl from './form-field.hbs'
 import Block from '../../../core/Block'
-import { FormInput, FormInputProps } from '../form-input'
+import { default as FormInput, FormInputProps } from '../form-input'
 import { FormInputError } from '../form-input-error'
 import { validate } from '../../../utils/validation'
 
@@ -32,11 +32,11 @@ export class FormField extends Block<formFieldProps> {
     this.children.input = new FormInput({
       ...this.props.inputProps,
       events: {
-        focus: (event) =>
+        focus: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
-        blur: (event) =>
+        blur: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
-        input: (event) =>
+        input: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
       },
     })

@@ -1,6 +1,6 @@
 import ProfileFormFieldTmpl from './profile-form-field.hbs'
 import Block from '../../../core/Block'
-import { FormInput, FormInputProps } from '../../ui-form/form-input'
+import { default as FormInput, FormInputProps } from '../../ui-form/form-input'
 import { FormInputError } from '../../ui-form/form-input-error'
 import { validate } from '../../../utils/validation'
 
@@ -13,7 +13,11 @@ type formFieldProps = {
   validateForm: formValidation
 }
 
-export class ProfileFormField extends Block<formFieldProps> {
+export class ProfileFormFieldBlock extends Block<formFieldProps> {
+  constructor(props: formFieldProps) {
+    super(props)
+  }
+
   validateInputValue(value: string) {
     const inputName = this.props.inputProps.name
     const validateForm = this.props.validateForm
@@ -35,11 +39,11 @@ export class ProfileFormField extends Block<formFieldProps> {
     this.children.input = new FormInput({
       ...this.props.inputProps,
       events: {
-        focus: (event) =>
+        focus: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
-        blur: (event) =>
+        blur: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
-        input: (event) =>
+        input: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
       },
     })
