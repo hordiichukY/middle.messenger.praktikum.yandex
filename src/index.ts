@@ -5,7 +5,6 @@ import ChatsPage from '../src/pages/chats'
 import { NotFoundPage } from '../src/pages/not-found'
 import { ServerError } from '../src/pages/server-error'
 import Router from './core/Router'
-import TestBlock from '../src/pages/test'
 import AuthController from './controllers/AuthController'
 import { navigation } from './variables/navigation'
 import store from './core/Store'
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use(notFound, NotFoundPage)
     .use(serverError, ServerError)
     .use(other, NotFoundPage)
-    .use('/test', TestBlock)
     .start()
 
   try {
