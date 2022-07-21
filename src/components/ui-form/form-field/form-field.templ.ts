@@ -11,6 +11,10 @@ type formFieldProps = {
 }
 
 export class FormField extends Block<formFieldProps> {
+  constructor(props: formFieldProps) {
+    super(props)
+  }
+
   validateInputValue(value: string) {
     const inputName = this.props.inputProps.name
     const validateForm = this.props.validateForm

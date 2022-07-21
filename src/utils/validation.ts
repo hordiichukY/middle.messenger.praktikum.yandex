@@ -1,15 +1,4 @@
-type InputName =
-  | 'first_name'
-  | 'second_name'
-  | 'login'
-  | 'email'
-  | 'password'
-  | 'phone'
-  | 'retype'
-  | 'newPassword'
-  | 'oldPassword'
-type InputPatternsName = Exclude<InputName, 'retype' | 'oldPassword'>
-type Patterns = Record<InputPatternsName, RegExp>
+type Patterns = Record<string, RegExp>
 
 const patterns: Patterns = {
   first_name: /^[A-ZА-Я][a-zа-я-]*$/,
@@ -22,7 +11,7 @@ const patterns: Patterns = {
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/ /* eslint-disable-line */,
 }
 
-export const validate = (inputName: InputName, valueToValidate: string) => {
+export const validate = (inputName: string, valueToValidate: string) => {
   if (inputName === 'oldPassword') {
     return true
   }

@@ -1,5 +1,5 @@
 import { User } from '../../utils/types/userData'
-import { Chat } from '../../utils/types/chatData'
+import { Chat, ChatMessageProps } from '../../utils/types/chatData'
 
 interface CurrentUser extends User {
   isLoading?: boolean
@@ -8,4 +8,6 @@ interface CurrentUser extends User {
 export interface StoreData {
   currentUser?: CurrentUser
   chats?: Chat[]
+  chatMessages?: Record<number, ChatMessageProps[]>
+  activeChatId?: number
 }

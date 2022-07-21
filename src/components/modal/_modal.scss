@@ -1,0 +1,74 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 340px;
+    padding: 40px 20px 30px;
+    background-color: $white;
+    border-radius: 20px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    @include text(15px, 20px, 500);
+    color: $dark;
+    text-align: center;
+    margin: 0 0 27px;
+  }
+
+  &__button {
+    margin-top: 10px;
+  }
+
+  &__link {
+    margin-top: 14px;
+  }
+
+  &.is-shown {
+    display: flex;
+  }
+
+  &__notification {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: 60px;
+    @include text(16px, 20px, 500);
+    background-color: $white;
+    padding: 10px;
+    border-radius: 20px;
+
+    &.is-success {
+      color: $green;
+    }
+
+    &.is-failure {
+      color: $red;
+    }
+
+    &.is-shown {
+      display: flex;
+    }
+  }
+}

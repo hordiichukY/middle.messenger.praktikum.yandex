@@ -41,4 +41,20 @@ export type ChatTokenRequestBody = {
 
 export type ChatCreationResponse = string | RequestFailure
 export type ChatAccessResponse = string | RequestFailure
-export type ChatTokenResponse = string | ChatToken[]
+export type ChatTokenResponse = string | ChatToken
+
+export type ChatMessageProps = {
+  chat_id: number
+  content: string
+  file: null | string
+  id: number
+  is_read: boolean
+  time: string
+  type: string
+  user_id: number
+}
+
+export type WsMessage = {
+  chatId: number
+  message: ChatMessageProps | ChatMessageProps[]
+}

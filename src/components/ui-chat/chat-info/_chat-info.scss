@@ -1,0 +1,26 @@
+.chat-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+  margin: 0 16px 0 25px;
+  border-bottom: 1px solid $chatColor;
+  @include text(13px, $dark, 600, 15px);
+
+  &__name {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    display: block;
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-right: 10px;
+    &.is-empty {
+      background-color: $chatColor;
+    }
+  }
+}

@@ -19,15 +19,17 @@ export class AvatarBlock extends Block<AvatarProps> {
 
   validateForm(fileList: FileList) {
     if (fileList && fileList.length > 0) {
-      this.children.changeAvatarSubmitBtn.setProps({
-        class: 'button_is-small is-submit-change-avatar',
-      })
+      if (this.children.changeAvatarSubmitBtn instanceof Block) {
+        this.children.changeAvatarSubmitBtn.setProps({
+          class: 'button button_is-small is-submit-change-avatar',
+        })
+      }
     }
   }
 
   initChildren(): void {
     this.children.changeAvatarBtn = new Button({
-      class: 'button_is-small is-change-avatar',
+      class: 'button button_is-small is-change-avatar',
       type: 'button',
       title: 'Change avatar',
       events: {
@@ -37,7 +39,7 @@ export class AvatarBlock extends Block<AvatarProps> {
       },
     })
     this.children.changeAvatarSubmitBtn = new Button({
-      class: 'button_is-small is-submit-change-avatar disabled',
+      class: 'button button_is-small is-submit-change-avatar disabled',
       type: 'submit',
       title: 'Save',
       events: {
@@ -53,9 +55,11 @@ export class AvatarBlock extends Block<AvatarProps> {
       events: {
         click: () => {
           this.props.editMode = 'not-edit-mode'
-          this.children.changeAvatarSubmitBtn.setProps({
-            class: 'button_is-small is-submit-change-avatar disabled',
-          })
+          if (this.children.changeAvatarSubmitBtn instanceof Block) {
+            this.children.changeAvatarSubmitBtn.setProps({
+              class: 'button button_is-small is-submit-change-avatar disabled',
+            })
+          }
         },
       },
     })
@@ -92,9 +96,11 @@ export class AvatarBlock extends Block<AvatarProps> {
     promise
       .then(() => {
         this.props.editMode = 'not-edit-mode'
-        this.children.changeAvatarSubmitBtn.setProps({
-          class: 'button_is-small is-submit-change-avatar disabled',
-        })
+        if (this.children.changeAvatarSubmitBtn instanceof Block) {
+          this.children.changeAvatarSubmitBtn.setProps({
+            class: 'button button_is-small is-submit-change-avatar disabled',
+          })
+        }
       })
       .catch((e) => {
         throw new Error(e)

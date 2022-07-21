@@ -7,7 +7,7 @@ export enum API {
   PROFILE = '/profile',
   AVATAR = '/profile/avatar',
   PASSWORD = '/password',
-  SEARCH = '/user/search',
+  SEARCH = '/search',
   CHATS = '/chats',
   USERS = '/users',
   CHAT_ID_TOKEN = '/token',
@@ -16,4 +16,5 @@ export enum API {
 export enum URLS {
   API_URL = 'https://ya-praktikum.tech/api/v2',
   RESOURCES_URL = 'https://ya-praktikum.tech/api/v2/resources',
+  WS_CHATS = 'wss://ya-praktikum.tech/ws/chats',
 }

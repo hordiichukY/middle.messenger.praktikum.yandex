@@ -2,22 +2,11 @@ import formInputTmpl from './form-input.hbs'
 import Block from '../../../core/Block'
 import { User } from '../../../utils/types/userData'
 
-type InputName =
-  | 'first_name'
-  | 'second_name'
-  | 'login'
-  | 'email'
-  | 'password'
-  | 'phone'
-  | 'retype'
-  | 'oldPassword'
-  | 'newPassword'
-
 export type FormInputProps = {
   currentUser?: User
   id: string
   type?: string
-  name: InputName
+  name: string
   placeholder?: string
   required?: string
   error?: string

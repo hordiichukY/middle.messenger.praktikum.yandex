@@ -50,7 +50,6 @@ class AuthController {
   async getUser() {
     try {
       const user = await this.api.read()
-      console.log(user)
       if (!('reason' in user)) {
         Store.set('currentUser', user)
       }

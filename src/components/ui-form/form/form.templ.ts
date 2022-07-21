@@ -28,16 +28,16 @@ export class Form extends Block<FormData> {
     )
     if (this.children.button instanceof Block) {
       if (formIsValid) {
-        this.children.button.setProps({ class: '' })
+        this.children.button.setProps({ class: 'button' })
       } else {
-        this.children.button.setProps({ class: 'disabled' })
+        this.children.button.setProps({ class: 'button disabled' })
       }
     }
   }
 
   initChildren() {
     this.children.button = new Button({
-      class: 'disabled',
+      class: 'button disabled',
       type: 'submit',
       ...this.props.buttonProps,
     })

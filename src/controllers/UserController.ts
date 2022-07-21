@@ -55,10 +55,11 @@ class UserController {
   }
 
   async searchUser(login: string) {
+    let response
     try {
-      const response = await this.api.searchUser(login)
-      if (response && typeof response !== 'string' && !('reason' in response)) {
-        // do sth
+      response = await this.api.searchUser(login)
+      if (response && Array.isArray(response)) {
+        return response[0].id
       }
     } catch (e) {
       throw new Error(e?.reason)

@@ -30,7 +30,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
 
   initChildren() {
     this.children.buttonChangeData = new Button({
-      class: 'button_is-small is-change-data',
+      class: 'button button_is-small is-change-data',
       type: 'button',
       title: 'Change data',
       events: {
@@ -42,7 +42,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
     })
 
     this.children.buttonSaveData = new Button({
-      class: 'button_is-small is-save-data',
+      class: 'button button_is-small is-save-data',
       type: 'button',
       title: 'Save data',
       events: {
@@ -53,7 +53,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
     })
 
     this.children.buttonChangePass = new Button({
-      class: 'button_is-small is-change-pass',
+      class: 'button button_is-small is-change-pass',
       type: 'button',
       title: 'Change password',
       events: {
@@ -109,11 +109,11 @@ export class ProfileFormBlock extends Block<profileFormData> {
     if (this.children.buttonSaveData instanceof Block) {
       if (formIsValid) {
         this.children.buttonSaveData.setProps({
-          class: 'button_is-small is-save-data',
+          class: 'button button_is-small is-save-data',
         })
       } else {
         this.children.buttonSaveData.setProps({
-          class: 'button_is-small is-save-data disabled',
+          class: 'button button_is-small is-save-data disabled',
         })
       }
     }

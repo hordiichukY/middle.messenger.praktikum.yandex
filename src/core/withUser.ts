@@ -1,4 +1,4 @@
 import { withStore } from './Store'
-export const WithUser = withStore((state) => ({
+export const withUser = withStore((state) => ({
   currentUser: { ...state.currentUser },
 }))
