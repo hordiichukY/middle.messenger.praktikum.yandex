@@ -21,16 +21,16 @@ npm run start
 ## Links
 
 - [Mockup](https://www.figma.com/file/HgnSbCdvzqUgQ6iM2po1DN/messenger)
-- [Demo](https://practicum-messenger.netlify.app/)
+- [Demo](https://cozy-basbousa-050a54.netlify.app/)
 
 ## Project pages
 
-- [Login](https://practicum-messenger.netlify.app/login)
-- [Registration](https://practicum-messenger.netlify.app/registration)
-- [Profile](https://practicum-messenger.netlify.app/profile)
-- [Chats](https://practicum-messenger.netlify.app/chats)
-- [404](https://practicum-messenger.netlify.app/404)
-- [500](https://practicum-messenger.netlify.app/500)
+- [Login](https://cozy-basbousa-050a54.netlify.app/)
+- [Registration](https://cozy-basbousa-050a54.netlify.app/sign-up)
+- [Messenger](https://cozy-basbousa-050a54.netlify.app/messenger)
+- [Settings](https://cozy-basbousa-050a54.netlify.app/settings)
+- [404](https://cozy-basbousa-050a54.netlify.app/404)
+- [500](https://cozy-basbousa-050a54.netlify.app/500)
 
-Pull request link: https://github.com/hordiichukY/middle.messenger.praktikum.yandex/pull/2
+Pull request link: https://github.com/hordiichukY/middle.messenger.praktikum.yandex/pull/3
 
