@@ -5,6 +5,7 @@
   transition: 0.2s color;
 
   &:hover {
+    cursor: pointer;
     color: $gray;
   }
 

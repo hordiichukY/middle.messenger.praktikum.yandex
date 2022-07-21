@@ -1,1 +1,1 @@
-export { ChatNav } from './chat-nav.templ';
+export { default as ChatNav } from './chat-nav.templ'

@@ -6,39 +6,10 @@
   flex-direction: column;
   align-items: center;
 
-  &__img-wrap {
-    position: relative;
-    width: 130px;
-    height: 130px;
-    &::before {
-      content: 'Change';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $yellow;
-      border-radius: 100px;
-      @include text(16px, $dark, 500);
-    }
-  }
-
-  &__img {
-    display: block;
-    position: relative;
-    width: 130px;
-    height: 130px;
-    background-color: $chatColorDark;
-    border-radius: 100%;
-    object-fit: cover;
-    cursor: pointer;
-    z-index: 1;
-    &:hover {
-      opacity: 0;
-    }
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__name {
@@ -58,5 +29,24 @@
     margin-top: 40px;
     display: grid;
     gap: 20px;
+  }
+
+  .is-save-data,
+  .is-cancel {
+    display: none;
+  }
+
+  &.is-edit-mode {
+    .avatar,
+    .is-change-data,
+    .is-logout,
+    .is-change-pass {
+      display: none;
+    }
+
+    .is-save-data,
+    .is-cancel {
+      display: block;
+    }
   }
 }

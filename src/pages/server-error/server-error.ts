@@ -1,6 +1,6 @@
-import serverErrorPageTmpl from './server-error.hbs';
-import { InfoPage } from '../../components/info';
-import Block from '../../utils/block';
+import serverErrorPageTmpl from './server-error.hbs'
+import { InfoPage } from '../../components/info'
+import Block from '../../core/Block'
 
 export class ServerError extends Block {
   initChildren(): void {
@@ -10,7 +10,6 @@ export class ServerError extends Block {
     })
   }
   render() {
-    return this.compile(serverErrorPageTmpl,{})
+    return this.compile(serverErrorPageTmpl, {})
   }
 }
-

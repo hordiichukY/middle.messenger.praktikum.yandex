@@ -1,0 +1,94 @@
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+
+  &__img {
+    display: block;
+    position: relative;
+    width: 130px;
+    height: 130px;
+    background-color: $chatColorDark;
+    border-radius: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    z-index: 1;
+
+    &.is-empty {
+      background-color: $chatColorDark;
+      background-image: url('../../static/icons/picture.svg');
+      background-repeat: no-repeat;
+      background-size: 40px auto;
+      background-position: center;
+    }
+  }
+  &__label {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: $yellow;
+    @include text(14px, $dark, 600);
+    z-index: 1;
+    transition: 0.2s opacity;
+    text-overflow: ellipsis;
+    filter: drop-shadow(0 4px 4px #00000040);
+    border-radius: 8px;
+    &:hover {
+      background-color: $gray;
+      color: $yellow;
+    }
+  }
+
+  &__input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__form {
+    display: none;
+  }
+
+  &__cancel {
+    margin-top: 20px;
+  }
+
+  &.is-edit-mode {
+    & ~ * {
+      display: none;
+    }
+
+    .is-change-avatar {
+      display: none;
+    }
+
+    .avatar__form {
+      display: block;
+    }
+  }
+
+  &:hover {
+    .avatar__label {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}

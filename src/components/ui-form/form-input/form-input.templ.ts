@@ -1,28 +1,43 @@
-import formInputTmpl from './form-input.hbs';
-import Block from '../../../utils/block';
+import formInputTmpl from './form-input.hbs'
+import Block from '../../../core/Block'
+import { User } from '../../../utils/types/userData'
 
-export type FormInputProps  = {
-  id?: string
-  type?: string, 
-  name: string, 
-  placeholder?: string, 
-  required?: string, 
-  error? : string, 
-  value?: string,
-  label?:string,
-  disabled?: string,
+export type FormInputProps = {
+  currentUser?: User
+  id: string
+  type?: string
+  name: string
+  placeholder?: string
+  required?: string
+  error?: string
+  label?: string
+  disabled?: string
+  value?: string
   events?: {
-    focus?: (event?: Event) => void,
-    blur?: (event?: Event) => void,
-    input?: (event?: Event) => void,
+    focus?: (event?: Event) => void
+    blur?: (event?: Event) => void
+    input?: (event?: Event) => void
   }
 }
 
-export class FormInput extends Block<FormInputProps> {
+export class FormInputBlock extends Block<FormInputProps> {
   constructor(props: FormInputProps) {
     super(props)
   }
+
+  checkInputValue() {
+    const currentUser = JSON.parse(JSON.stringify(this.props?.currentUser))
+    if (!currentUser) {
+      return
+    }
+    const inputName = this.props.name
+    if (currentUser[inputName]) {
+      this.props.value = currentUser[inputName]
+    }
+  }
+
   render() {
-    return this.compile(formInputTmpl, {...this.props})
+    this.checkInputValue()
+    return this.compile(formInputTmpl, { ...this.props })
   }
 }

@@ -1,1 +1,1 @@
-export { ProfilePage } from './profile.templ';
+export { default } from './profile.templ'

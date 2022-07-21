@@ -1,0 +1,24 @@
+<div class='avatar is-{{editMode}}'>
+  <div class='avatar__wrap'>
+    {{#if currentUser.avatar}}
+      <img
+        class='avatar__img'
+        src='{{resoursePath}}{{currentUser.avatar}}'
+        alt='Avatar'
+      />
+    {{else}}
+      <div class='avatar__img is-empty'></div>
+    {{/if}}
+    <form class='avatar__form' enctype='multipart/form-data'>
+      <label for='avatar' class='avatar__label' id='avatar-label'>
+        <span>Choose file</span>
+        {{{avatarInput}}}
+      </label>
+
+      {{{changeAvatarSubmitBtn}}}
+      {{{changeAvatarCancel}}}
+    </form>
+    {{{changeAvatarBtn}}}
+  </div>
+
+</div>

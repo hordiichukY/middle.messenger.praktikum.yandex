@@ -14,6 +14,10 @@
     height: 47px;
     border-radius: 100%;
     object-fit: cover;
+
+    &.is-empty {
+      background-color: $chatColor;
+    }
   }
 
   &__content {
@@ -57,14 +61,16 @@
     @include text(11px, $dark, 500);
   }
 
-  &:hover {
+  &:hover,
+  &.is-active {
     margin: 0;
     padding: 15px 15px;
     background-color: $yellow;
     border-top: none;
   }
 
-  &:hover & {
+  &:hover &,
+  &.is-active & {
     &__name {
       color: $dark;
     }
