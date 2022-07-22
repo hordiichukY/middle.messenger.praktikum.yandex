@@ -4,15 +4,13 @@ import { default as FormInput, FormInputProps } from '../../ui-form/form-input'
 import { FormInputError } from '../../ui-form/form-input-error'
 import { validate } from '../../../utils/validation'
 
-type formValidation = (inputName: string, inputValueIsValid: boolean) => void
 type formFieldProps = {
   id?: string
   labelClass?: string
   label?: string
   inputProps: FormInputProps
-  validateForm: formValidation
+  updateFormState: (inputName: string, isInputValid: boolean) => void
 }
-
 export class ProfileFormFieldBlock extends Block<formFieldProps> {
   constructor(props: formFieldProps) {
     super(props)
@@ -20,19 +18,15 @@ export class ProfileFormFieldBlock extends Block<formFieldProps> {
 
   validateInputValue(value: string) {
     const inputName = this.props.inputProps.name
-    const validateForm = this.props.validateForm
-    if (!inputName) {
-      return
-    }
-    const inputValueIsValid = validate(inputName, value)
+    const isValid = validate(inputName, value)
+    this.updateErrorBlock(isValid)
+    this.props.updateFormState(inputName, isValid)
+  }
+
+  updateErrorBlock(isValid: boolean) {
     if (this.children.error instanceof Block) {
-      if (inputValueIsValid) {
-        this.children.error.setProps({ modifier: 'hide' })
-      } else {
-        this.children.error.setProps({ modifier: 'show' })
-      }
+      this.children.error.setProps({ modifier: isValid ? 'hide' : 'show' })
     }
-    validateForm(inputName, inputValueIsValid)
   }
 
   initChildren() {

@@ -1,12 +1,12 @@
 $dark: #0d0d0d;
-$yellow: #ffee55;
-$gray: rgba(13, 13, 13, 0.7);
-$lightGray: rgba(82, 82, 82, 0.5);
-$white: #fff;
-$red: #ff0000;
+$light: #fff;
+$accentColor: #ffee55;
+$baseColor1: rgba(13, 13, 13, 0.7);
+$errorColor: #ff0000;
+$successColor: rgb(80, 200, 120);
+$disabled: rgba(82, 82, 82, 0.5);
 $chatColor: #efefef;
 $chatColorDark: #999999;
-$green: rgb(80, 200, 120);
 
 $filterYellow: invert(74%) sepia(100%) saturate(287%) hue-rotate(358deg)
   brightness(106%) contrast(102%);

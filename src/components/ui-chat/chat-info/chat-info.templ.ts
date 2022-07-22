@@ -9,13 +9,13 @@ import chatInfoTmpl from './chat-info.hbs'
 
 type ChatInfoProps = {
   title: string
-  menuIsOpen?: string
+  isMenuOpen?: boolean
 }
 
 export class ChatInfo extends Block<ChatInfoProps> {
   constructor(props: ChatInfoProps) {
     super(props)
-    this.props.menuIsOpen = ''
+    this.props.isMenuOpen = false
   }
 
   initChildren(): void {
@@ -23,7 +23,7 @@ export class ChatInfo extends Block<ChatInfoProps> {
       class: 'chat-menu__button',
       events: {
         click: () => {
-          this.props.menuIsOpen = this.props.menuIsOpen ? '' : 'open'
+          this.props.isMenuOpen = this.props.isMenuOpen ? false : true
         },
       },
     })
@@ -36,7 +36,7 @@ export class ChatInfo extends Block<ChatInfoProps> {
           if (!(this.children.addUserModal instanceof Block)) {
             return
           }
-          this.children.addUserModal.setProps({ shown: 'shown' })
+          this.children.addUserModal.setProps({ isShown: true })
           this.closeMenu()
         },
       },
@@ -50,7 +50,7 @@ export class ChatInfo extends Block<ChatInfoProps> {
           if (!(this.children.deleteUserModal instanceof Block)) {
             return
           }
-          this.children.deleteUserModal.setProps({ shown: 'shown' })
+          this.children.deleteUserModal.setProps({ isShown: true })
           this.closeMenu()
         },
       },
@@ -67,7 +67,7 @@ export class ChatInfo extends Block<ChatInfoProps> {
       inputProps: {
         ...addUserInputProps,
       },
-      shown: '',
+      isShown: false,
       action: 'add-user',
     })
 
@@ -82,12 +82,12 @@ export class ChatInfo extends Block<ChatInfoProps> {
       inputProps: {
         ...deleteUserInputProps,
       },
-      shown: '',
+      isShown: false,
       action: 'delete-user',
     })
   }
 
-  closeMenu = () => (this.props.menuIsOpen = '')
+  closeMenu = () => (this.props.isMenuOpen = false)
 
   render() {
     return this.compile(chatInfoTmpl, { ...this.props })

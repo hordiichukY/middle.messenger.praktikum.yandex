@@ -12,20 +12,21 @@ type ModalProps = {
   buttonProps: ButtonProps
   linkProps: LinkProps
   inputProps: FormInputProps
-  shown: string
+  isShown: boolean
   action: string
   modalNotification?: string
-  notififcationShown?: string
+  isNotififcationShown?: boolean
   result?: string
 }
 
 export class Modal extends Block<ModalProps> {
   inputValue = ''
+  requestActionsDelay = 1100
 
   constructor(props: ModalProps) {
     super(props)
     this.props.modalNotification = ''
-    this.props.notififcationShown = ''
+    this.props.isNotififcationShown = false
     this.props.result = ''
   }
 
@@ -53,8 +54,24 @@ export class Modal extends Block<ModalProps> {
     this.children.input = new ModalFormField({
       ...this.props.inputProps,
       events: {
-        input: () => this.validateForm(),
-        blur: () => this.validateForm(),
+        input: () => {
+          const isInputValid = this.validateInputValue()
+          if (!isInputValid) {
+            this.disableSubmitButton()
+            return
+          }
+          this.activateSubmitButton()
+          this.inputValue = this.getInputElement().value
+        },
+        blur: () => {
+          const isInputValid = this.validateInputValue()
+          if (!isInputValid) {
+            this.disableSubmitButton()
+            return
+          }
+          this.activateSubmitButton()
+          this.inputValue = this.getInputElement().value
+        },
       },
     })
   }
@@ -62,10 +79,10 @@ export class Modal extends Block<ModalProps> {
   handleClick(action: string) {
     switch (action) {
       case 'create-chat':
-        const createChaatPromise = ChatsController.createChat({
+        const createChatPromise = ChatsController.createChat({
           title: this.inputValue,
         })
-        createChaatPromise
+        createChatPromise
           .then(() => {
             this.successRequstActions()
           })
@@ -105,51 +122,57 @@ export class Modal extends Block<ModalProps> {
       })
     }
     setTimeout(() => {
-      this.props.shown = ''
+      this.props.isShown = false
       this.resetInputValue()
       this.hideNotification()
-    }, 1100)
+    }, this.requestActionsDelay)
   }
 
   failRequestActions() {
     this.showFailNotification()
     setTimeout(() => {
       this.hideNotification()
-    }, 1100)
+    }, this.requestActionsDelay)
   }
 
   showSuccessNotification() {
     this.props.modalNotification = 'Success!'
-    this.props.notififcationShown = 'shown'
+    this.props.isNotififcationShown = true
     this.props.result = 'success'
   }
 
   showFailNotification() {
     this.props.modalNotification = 'Fail!'
-    this.props.notififcationShown = 'shown'
+    this.props.isNotififcationShown = true
     this.props.result = 'failure'
   }
 
   hideNotification() {
-    this.props.notififcationShown = ''
+    this.props.isNotififcationShown = false
   }
 
-  validateForm() {
+  validateInputValue() {
     const input = this.getInputElement()
     if (!input || !input.value.trim()) {
-      if (this.children.buttonSubmit instanceof Block) {
-        this.children.buttonSubmit.setProps({
-          class: 'button button_is-small disabled',
-        })
-      }
-      return
+      return false
     }
+    return true
+  }
+
+  disableSubmitButton() {
+    if (this.children.buttonSubmit instanceof Block) {
+      this.children.buttonSubmit.setProps({
+        class: 'button button_is-small disabled',
+      })
+    }
+  }
+
+  activateSubmitButton() {
     if (this.children.buttonSubmit instanceof Block) {
       this.children.buttonSubmit.setProps({
         class: 'button button_is-small',
       })
     }
-    this.inputValue = input.value
   }
 
   getInputElement() {
@@ -159,13 +182,8 @@ export class Modal extends Block<ModalProps> {
   }
 
   cancel() {
-    this.props.shown = ''
-    if (this.children.buttonSubmit instanceof Block) {
-      this.children.buttonSubmit.setProps({
-        class: 'button button_is-small disabled',
-      })
-    }
-
+    this.props.isShown = false
+    this.disableSubmitButton()
     this.resetInputValue()
   }
 

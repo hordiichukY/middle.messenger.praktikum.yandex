@@ -9,7 +9,9 @@ export enum StoreEvents {
 }
 
 class Store extends EventBus {
-  private state: StoreData = {}
+  private state: StoreData = {
+    chatMessages: [],
+  }
   public getState() {
     return this.state
   }

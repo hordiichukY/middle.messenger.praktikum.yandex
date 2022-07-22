@@ -1,4 +1,4 @@
-<div class='modal is-{{shown}}'>
+<div class='modal is-shown-{{isShown}}'>
   <div class='modal__wrap'>
     <h2 class='modal__title'>{{title}}</h2>
     <form class='modal__form {{class}}'>
@@ -7,7 +7,9 @@
       {{{linkCancel}}}
     </form>
   </div>
-  <div class='modal__notification is-{{notififcationShown}} is-{{result}}'>
+  <div
+    class='modal__notification is-shown-{{isNotififcationShown}} is-{{result}}'
+  >
     {{modalNotification}}
   </div>
 </div>

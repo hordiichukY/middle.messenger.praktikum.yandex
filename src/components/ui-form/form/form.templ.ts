@@ -9,11 +9,11 @@ type FormData = {
   title: string
   buttonProps: ButtonProps
   linkProps: LinkProps
+  updateFormState: (inputName: string, isInputValid: boolean) => void
   inputFieldProps: FormInputProps[]
   inputsValidationStatus: Record<string, unknown>
 }
 
-let formIsValid = false
 export class Form extends Block<FormData> {
   constructor(props: FormData) {
     // todo change validation method
@@ -22,17 +22,25 @@ export class Form extends Block<FormData> {
 
   validateForm(inputName: string, isValid: boolean) {
     this.props.inputsValidationStatus[inputName] = isValid
-
-    formIsValid = Object.values(this.props.inputsValidationStatus).every(
+    return Object.values(this.props.inputsValidationStatus).every(
       (value) => value
     )
+  }
+
+  setSubmitButtonProps(isFormValid: boolean) {
     if (this.children.button instanceof Block) {
-      if (formIsValid) {
+      if (isFormValid) {
         this.children.button.setProps({ class: 'button' })
       } else {
         this.children.button.setProps({ class: 'button disabled' })
       }
     }
+  }
+
+  updateFormState(inputName: string, isInputValid: boolean) {
+    const isFormValid = this.validateForm(inputName, isInputValid)
+
+    this.setSubmitButtonProps(isFormValid)
   }
 
   initChildren() {
@@ -52,7 +60,7 @@ export class Form extends Block<FormData> {
 
       return new FormField({
         inputProps: props,
-        validateForm: this.validateForm.bind(this),
+        updateFormState: this.updateFormState.bind(this),
       })
     })
   }

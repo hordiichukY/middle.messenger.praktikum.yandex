@@ -1,33 +1,36 @@
-<div class='profile-form is-{{editMode}}'>
+<div class='profile-form is-edit-mode-{{isEditMode}}'>
   {{{avatar}}}
 
-  {{#if currentUser.display_name}}
-    <p class='profile-form__name'>{{currentUser.display_name}}</p>
-  {{else}}
-    <p class='profile-form__name'>{{currentUser.first_name}}</p>
-  {{/if}}
-
-  <form class='profile-form__wrap'>
-    {{#if changeDataFields}}
-      <div class='profile-form__inputs is-profile-inputs'>
-        {{#each fields}}
-          {{{this}}}
-        {{/each}}
-      </div>
+  <div class='profile-form__form-data'>
+    {{#if currentUser.display_name}}
+      <p class='profile-form__name'>{{currentUser.display_name}}</p>
     {{else}}
-      <div class='profile-form__inputs is-password-inputs'>
-        {{#each changePassFields}}
-          {{{this}}}
-        {{/each}}
-      </div>
+      <p class='profile-form__name'>{{currentUser.first_name}}</p>
     {{/if}}
 
-    <div class='profile-form__buttons'>
-      {{{buttonChangeData}}}
-      {{{buttonSaveData}}}
-      {{{buttonChangePass}}}
-      {{{logoutLink}}}
-      {{{cancelLink}}}
-    </div>
-  </form>
-</form>
+    <form class='profile-form__wrap'>
+      {{#if changeDataFields}}
+        <div class='profile-form__inputs is-profile-inputs'>
+          {{#each fields}}
+            {{{this}}}
+          {{/each}}
+        </div>
+      {{else}}
+        <div class='profile-form__inputs is-password-inputs'>
+          {{#each changePassFields}}
+            {{{this}}}
+          {{/each}}
+        </div>
+      {{/if}}
+
+      <div class='profile-form__buttons'>
+        {{{buttonChangeData}}}
+        {{{buttonSaveData}}}
+        {{{buttonChangePass}}}
+        {{{logoutLink}}}
+        {{{cancelLink}}}
+      </div>
+    </form>
+  </div>
+
+</div>

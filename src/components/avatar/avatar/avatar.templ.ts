@@ -7,24 +7,14 @@ import UserController from '../../../controllers/UserController'
 import { URLS } from '../../../variables/api'
 
 type AvatarProps = {
-  editMode: string
+  isEditMode: boolean
   resoursePath: string
 }
 
 export class AvatarBlock extends Block<AvatarProps> {
   constructor(props: AvatarProps) {
     super(props)
-    this.props.editMode = 'not-edit-mode'
-  }
-
-  validateForm(fileList: FileList) {
-    if (fileList && fileList.length > 0) {
-      if (this.children.changeAvatarSubmitBtn instanceof Block) {
-        this.children.changeAvatarSubmitBtn.setProps({
-          class: 'button button_is-small is-submit-change-avatar',
-        })
-      }
-    }
+    this.props.isEditMode = false
   }
 
   initChildren(): void {
@@ -34,7 +24,7 @@ export class AvatarBlock extends Block<AvatarProps> {
       title: 'Change avatar',
       events: {
         click: () => {
-          this.props.editMode = 'edit-mode'
+          this.props.isEditMode = true
         },
       },
     })
@@ -54,12 +44,8 @@ export class AvatarBlock extends Block<AvatarProps> {
       title: 'Cancel',
       events: {
         click: () => {
-          this.props.editMode = 'not-edit-mode'
-          if (this.children.changeAvatarSubmitBtn instanceof Block) {
-            this.children.changeAvatarSubmitBtn.setProps({
-              class: 'button button_is-small is-submit-change-avatar disabled',
-            })
-          }
+          this.props.isEditMode = false
+          this.disableSubmitButton()
         },
       },
     })
@@ -68,9 +54,14 @@ export class AvatarBlock extends Block<AvatarProps> {
       value: '',
       events: {
         change: async (event: Event) => {
-          this.validateForm(
+          const isFormValid = this.validateForm(
             (event?.target as HTMLInputElement).files as FileList
           )
+          if (isFormValid) {
+            this.activateSubmitButton()
+          } else {
+            this.disableSubmitButton()
+          }
         },
       },
     })
@@ -95,16 +86,32 @@ export class AvatarBlock extends Block<AvatarProps> {
 
     promise
       .then(() => {
-        this.props.editMode = 'not-edit-mode'
-        if (this.children.changeAvatarSubmitBtn instanceof Block) {
-          this.children.changeAvatarSubmitBtn.setProps({
-            class: 'button button_is-small is-submit-change-avatar disabled',
-          })
-        }
+        this.props.isEditMode = false
+        this.disableSubmitButton()
       })
       .catch((e) => {
         throw new Error(e)
       })
+  }
+
+  validateForm(fileList: FileList) {
+    return fileList && fileList.length > 0 ? true : false
+  }
+
+  disableSubmitButton() {
+    if (this.children.changeAvatarSubmitBtn instanceof Block) {
+      this.children.changeAvatarSubmitBtn.setProps({
+        class: 'button button_is-small is-submit-change-avatar disabled',
+      })
+    }
+  }
+
+  activateSubmitButton() {
+    if (this.children.changeAvatarSubmitBtn instanceof Block) {
+      this.children.changeAvatarSubmitBtn.setProps({
+        class: 'button button_is-small is-submit-change-avatar',
+      })
+    }
   }
 
   render() {

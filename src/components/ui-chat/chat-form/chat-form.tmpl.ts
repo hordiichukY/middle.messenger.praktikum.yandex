@@ -20,7 +20,17 @@ export class ChatForm extends Block<ChatFormProps> {
       required: 'required',
       events: {
         input: () => {
-          this.validateForm()
+          const isFormValid = this.validateForm()
+          if (!(this.children.submitBtn instanceof Block)) {
+            return
+          }
+          if (isFormValid) {
+            this.children.submitBtn.setProps({ class: 'chat-form__button' })
+          } else {
+            this.children.submitBtn.setProps({
+              class: 'chat-form__button disabled',
+            })
+          }
         },
       },
     })
@@ -46,14 +56,10 @@ export class ChatForm extends Block<ChatFormProps> {
     const input = document.querySelector(
       'input[name="message"]'
     ) as HTMLInputElement
-    if (!(this.children.submitBtn instanceof Block)) {
-      return
+    if (input && input.value.trim()) {
+      return true
     }
-    if (input.value.trim()) {
-      this.children.submitBtn.setProps({ class: 'chat-form__button' })
-    } else {
-      this.children.submitBtn.setProps({ class: 'chat-form__button disabled' })
-    }
+    return false
   }
 
   render() {

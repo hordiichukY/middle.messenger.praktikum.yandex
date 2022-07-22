@@ -21,42 +21,51 @@ export class ChatsPageBlock extends Block<ChatsPageProps> {
     super(props)
     this.props.hasMessages = false
   }
+
   initChildren() {
     this.children.sidebar = new ChatSidebar({})
     this.children.sendMessageForm = new ChatForm({})
   }
 
+  renderChatInfo(chats: ChatItemProps[]) {
+    const activeChat = chats.find(
+      (chat) => chat.id === this.props.activeChatId
+    ) as ChatItemProps
+
+    this.children.chatInfo = new ChatInfo({
+      title: activeChat.title,
+    })
+  }
+
+  renderMessages(messages: ChatMessageProps[]) {
+    this.children.messages = messages
+      .filter(({ content }) => content)
+      .map((message) => {
+        const isCurrentUserMessage =
+          this.props.currentUser?.id === message?.user_id
+
+        return new ChatMessage({ message, isCurrentUserMessage })
+      })
+  }
+
   render() {
     const activeChatId = this.props.activeChatId
-    if (activeChatId && this.props.chats) {
-      const activeChatDetails = this.props.chats.find(
-        (chat) => chat.id === activeChatId
-      )
-      if (activeChatDetails) {
-        this.children.chatInfo = new ChatInfo({
-          title: activeChatDetails.title,
-        })
-      }
 
-      if (this.props.chatMessages) {
-        const activeChatMessages = this.props.chatMessages[activeChatId]
-        if (activeChatMessages.length) {
-          ;(this.children.message as any) = activeChatMessages.map(
-            (message) => {
-              if (message.content) {
-                this.props.hasMessages = true
-                const isCurrentUserMessage =
-                  this.props.currentUser?.id === message?.user_id
-
-                return new ChatMessage({ message, isCurrentUserMessage })
-              }
-            }
-          )
-        } else {
-          this.props.hasMessages = false
-        }
-      }
+    if (!activeChatId || !this.props.chats) {
+      return this.compile(chatsPageTmpl, { ...this.props })
     }
+
+    this.renderChatInfo(this.props.chats)
+
+    if (!this.props.chatMessages?.[activeChatId]?.length) {
+      this.props.hasMessages = false
+      return this.compile(chatsPageTmpl, { ...this.props })
+    }
+
+    this.props.hasMessages = true
+
+    this.renderMessages(this.props.chatMessages[activeChatId])
+
     return this.compile(chatsPageTmpl, { ...this.props })
   }
 }

@@ -18,7 +18,7 @@
     width: 30px;
     height: 30px;
     border-radius: 100%;
-    background-color: $yellow;
+    background-color: $accentColor;
     background-image: url('../../static/icons/arrow.svg');
     background-repeat: no-repeat;
     background-size: 12px auto;
@@ -27,7 +27,7 @@
     cursor: pointer;
     transform: rotate(180deg);
     &.disabled {
-      background-color: $lightGray;
+      background-color: $disabled;
       pointer-events: none;
     }
   }

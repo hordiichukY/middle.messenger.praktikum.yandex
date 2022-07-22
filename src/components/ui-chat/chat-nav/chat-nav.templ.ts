@@ -21,7 +21,7 @@ class ChatNav extends Block<ChatNavProps> {
     if (!(this.children.newChatModal instanceof Block)) {
       return
     }
-    this.children.newChatModal.setProps({ shown: 'shown' })
+    this.children.newChatModal.setProps({ isShown: true })
   }
 
   initChildren(): void {
@@ -54,7 +54,7 @@ class ChatNav extends Block<ChatNavProps> {
       inputProps: {
         ...createChatInputProps,
       },
-      shown: '',
+      isShown: false,
       action: 'create-chat',
     })
   }

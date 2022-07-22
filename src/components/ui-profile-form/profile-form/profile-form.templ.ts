@@ -13,16 +13,14 @@ import { ChangePasswordData, UserProfile } from '../../../utils/types/userData'
 import { Avatar } from '../../avatar/avatar'
 
 type profileFormData = {
-  editMode: string
+  isEditMode: boolean
   changeDataFields: boolean
 }
 type inputsValidation = Record<string, boolean>
 
-let inputsValidationStatus: inputsValidation = {}
-let formIsValid = true
-
 export class ProfileFormBlock extends Block<profileFormData> {
   private oldInputValues: Record<string, string> = {}
+  private inputsValidationStatus: inputsValidation = {}
   constructor(props: profileFormData) {
     super(props)
     this.props.changeDataFields = true
@@ -42,7 +40,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
     })
 
     this.children.buttonSaveData = new Button({
-      class: 'button button_is-small is-save-data',
+      class: 'button button_is-small is-save-data disabled',
       type: 'button',
       title: 'Save data',
       events: {
@@ -85,7 +83,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
         id: props.id,
         label: props.label,
         inputProps: props,
-        validateForm: this.validateForm.bind(this),
+        updateFormState: this.updateFormState.bind(this),
       })
     })
 
@@ -94,20 +92,29 @@ export class ProfileFormBlock extends Block<profileFormData> {
         id: props.id,
         label: props.label,
         inputProps: props,
-        validateForm: this.validateForm.bind(this),
+        updateFormState: this.updateFormState.bind(this),
       })
     })
 
     this.children.avatar = new Avatar({})
   }
 
-  validateForm(inputName: string, isValid: boolean) {
-    inputsValidationStatus[inputName] = isValid
-    inputsValidationStatus['display_name'] = true
-    inputsValidationStatus['oldPassword'] = true
-    formIsValid = Object.values(inputsValidationStatus).every((value) => value)
+  validateForm(inputName: string, isInputValid: boolean) {
+    this.inputsValidationStatus[inputName] = isInputValid
+    this.inputsValidationStatus['display_name'] = true
+    this.inputsValidationStatus['oldPassword'] = true
+    return Object.values(this.inputsValidationStatus).every((value) => value)
+  }
+
+  updateFormState(inputName: string, isInputValid: boolean) {
+    const isFormValid = this.validateForm(inputName, isInputValid)
+
+    this.setSubmitButtonProps(isFormValid)
+  }
+
+  setSubmitButtonProps(isFormValid: boolean) {
     if (this.children.buttonSaveData instanceof Block) {
-      if (formIsValid) {
+      if (isFormValid) {
         this.children.buttonSaveData.setProps({
           class: 'button button_is-small is-save-data',
         })
@@ -120,7 +127,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
   }
 
   activateInputs() {
-    this.props.editMode = 'edit-mode'
+    this.props.isEditMode = true
     const inputClass = this.props.changeDataFields
       ? '.is-profile-inputs'
       : '.is-password-inputs'
@@ -129,20 +136,20 @@ export class ProfileFormBlock extends Block<profileFormData> {
       const inputName = (input as HTMLInputElement).name
       const inputValue = (input as HTMLInputElement).value
       this.oldInputValues[inputName] = inputValue
-      inputsValidationStatus[inputName] = inputValue ? true : false
-      this.validateForm(inputName, inputsValidationStatus[inputName])
+      this.inputsValidationStatus[inputName] = inputValue ? true : false
+      this.validateForm(inputName, this.inputsValidationStatus[inputName])
       ;(input as HTMLInputElement).disabled = false
     })
   }
 
   deactivateInputs() {
-    this.props.editMode = 'not-edit-mode'
+    this.props.isEditMode = false
     const inputClass = this.props.changeDataFields
       ? '.is-profile-inputs'
       : '.is-password-inputs'
     const inputs = Array.from(document.querySelectorAll(`${inputClass} input`))
     inputs.forEach((input) => ((input as HTMLInputElement).disabled = true))
-    inputsValidationStatus = {}
+    this.inputsValidationStatus = {}
   }
 
   logout() {
@@ -196,6 +203,7 @@ export class ProfileFormBlock extends Block<profileFormData> {
       ;(input as HTMLInputElement).value = this.oldInputValues[inputName]
     })
     this.deactivateInputs()
+    this.setSubmitButtonProps(false)
   }
 
   render() {

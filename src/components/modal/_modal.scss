@@ -9,6 +9,7 @@
   display: none;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 
   &__wrap {
     display: flex;
@@ -16,7 +17,7 @@
     align-items: center;
     width: 340px;
     padding: 40px 20px 30px;
-    background-color: $white;
+    background-color: $light;
     border-radius: 20px;
   }
 
@@ -41,7 +42,7 @@
     margin-top: 14px;
   }
 
-  &.is-shown {
+  &.is-shown-true {
     display: flex;
   }
 
@@ -55,19 +56,19 @@
     width: 200px;
     height: 60px;
     @include text(16px, 20px, 500);
-    background-color: $white;
+    background-color: $light;
     padding: 10px;
     border-radius: 20px;
 
     &.is-success {
-      color: $green;
+      color: $successColor;
     }
 
     &.is-failure {
-      color: $red;
+      color: $errorColor;
     }
 
-    &.is-shown {
+    &.is-shown-true {
       display: flex;
     }
   }

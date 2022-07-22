@@ -6,14 +6,14 @@
 
   &:hover {
     cursor: pointer;
-    color: $gray;
+    color: $baseColor1;
   }
 
   &_is-white {
-    color: $white;
+    color: $light;
     &:hover {
       opacity: 0.8;
-      color: $white;
+      color: $light;
     }
   }
 }
