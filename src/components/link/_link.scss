@@ -5,14 +5,15 @@
   transition: 0.2s color;
 
   &:hover {
-    color: $gray;
+    cursor: pointer;
+    color: $baseColor1;
   }
 
   &_is-white {
-    color: $white;
+    color: $light;
     &:hover {
       opacity: 0.8;
-      color: $white;
+      color: $light;
     }
   }
 }

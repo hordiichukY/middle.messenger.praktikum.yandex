@@ -1,0 +1,13 @@
+.chat-message {
+  background: $chatColor;
+  padding: 11px;
+  @include text(12px, $dark, 500, 15px);
+  margin-bottom: 30px;
+  max-width: 400px;
+  border-radius: 12px;
+
+  &.is-current-true {
+    background: $accentColor;
+    margin-left: auto;
+  }
+}

@@ -1,18 +1,36 @@
-<form class='profile-form'>
-  <div class='profile-form__img-wrap'>
-    <img src='{{avatarSrc}}' alt='Avatar' class='profile-form__img' />
-  </div>
-  <p class='profile-form__name'>{{userName}}</p>
+<div class='profile-form is-edit-mode-{{isEditMode}}'>
+  {{{avatar}}}
 
-  <div class='profile-form__inputs'>
-    {{#each fields}}
-      {{{this}}}
-    {{/each}}
+  <div class='profile-form__form-data'>
+    {{#if currentUser.display_name}}
+      <p class='profile-form__name'>{{currentUser.display_name}}</p>
+    {{else}}
+      <p class='profile-form__name'>{{currentUser.first_name}}</p>
+    {{/if}}
+
+    <form class='profile-form__wrap'>
+      {{#if changeDataFields}}
+        <div class='profile-form__inputs is-profile-inputs'>
+          {{#each fields}}
+            {{{this}}}
+          {{/each}}
+        </div>
+      {{else}}
+        <div class='profile-form__inputs is-password-inputs'>
+          {{#each changePassFields}}
+            {{{this}}}
+          {{/each}}
+        </div>
+      {{/if}}
+
+      <div class='profile-form__buttons'>
+        {{{buttonChangeData}}}
+        {{{buttonSaveData}}}
+        {{{buttonChangePass}}}
+        {{{logoutLink}}}
+        {{{cancelLink}}}
+      </div>
+    </form>
   </div>
 
-  <div class='profile-form__buttons'>
-    {{{buttonChangeData}}}
-    {{{buttonChangePass}}}
-    {{{link}}}
-  </div>
-</form>
+</div>

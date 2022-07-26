@@ -1,11 +1,32 @@
-<li class='chat-item'>
-  <img src='{{chatAvatar}}' alt='Avatar' class='chat-item__img' />
+<li class='chat-item {{class}}' data-id='{{id}}'>
+  {{#if avatar}}
+    <img
+      src='{{resoursePath}}{{avatar}}'
+      alt='Chat avatar'
+      class='chat-item__img'
+    />
+  {{else}}
+    <div class='chat-item__img is-empty'></div>
+  {{/if}}
   <div class='chat-item__content'>
-    <h2 class='chat-item__name'>{{name}}</h2>
-    <p class='chat-item__text'>{{text}}</p>
+    <h2 class='chat-item__name'>{{title}}</h2>
+    {{#if last_message}}
+      <p class='chat-item__text'>{{last_message.content}}</p>
+    {{else}}
+      <p class='chat-item__text'>There is no messages yet</p>
+    {{/if}}
+
   </div>
   <div class='chat-item__details'>
-    <p class='chat-item__time'><time datetime='{{datetime}}'>{{time}}</time></p>
-    <span class='chat-item__unread'>{{unread}}</span>
+    {{#if last_message}}
+      <p class='chat-item__time'>
+        {{time}}
+      </p>
+    {{/if}}
+
+    {{#if unread_count}}
+      <span class='chat-item__unread'>{{unread_count}}</span>
+    {{/if}}
+
   </div>
 </li>

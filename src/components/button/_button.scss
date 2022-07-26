@@ -2,7 +2,7 @@
   width: 280px;
   height: 50px;
 
-  background: $yellow;
+  background: $accentColor;
   @include text(18px, $dark, 600, 50px);
   text-align: center;
   @include ellipsis;
@@ -20,14 +20,14 @@
 
   &:hover,
   &:active {
-    background-color: $gray;
-    color: $yellow;
+    background-color: $baseColor1;
+    color: $accentColor;
   }
 
   &:disabled,
   &.disabled {
-    background-color: $lightGray;
-    color: $white;
+    background-color: $disabled;
+    color: $light;
     pointer-events: none;
   }
 }

@@ -10,7 +10,7 @@
   }
 
   &__link {
-    @include text(15px, $yellow, 600, 16px);
+    @include text(15px, $accentColor, 600, 16px);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -28,7 +28,7 @@
 
     &:hover {
       opacity: 0.9;
-      color: $yellow;
+      color: $accentColor;
     }
   }
 
@@ -65,7 +65,7 @@
     font-size: 0;
 
     &:focus {
-      border: 1px solid $yellow;
+      border: 1px solid $accentColor;
       @include text(14px, $dark, 400, 14px);
 
       & + label {

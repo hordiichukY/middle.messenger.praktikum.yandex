@@ -1,74 +1,71 @@
-import Block from '../../../utils/block';
-import formTmpl from './form.hbs';
-import { Button} from '../../button';
-import { Link, LinkProps } from '../../link';
+import Block from '../../../core/Block'
+import formTmpl from './form.hbs'
+import { Button, ButtonProps } from '../../button'
+import { Link, LinkProps } from '../../link'
 import { FormField } from '../form-field'
 import { FormInputProps } from '../form-input'
 
 type FormData = {
-  title: string, 
-  buttonTitle: string,
-  linkProps: LinkProps,
-  inputFieldProps: FormInputProps[],
+  title: string
+  buttonProps: ButtonProps
+  linkProps: LinkProps
+  updateFormState: (inputName: string, isInputValid: boolean) => void
+  inputFieldProps: FormInputProps[]
+  inputsValidationStatus: Record<string, unknown>
 }
-type FormValues = Record<string, string>
-type inputsValidation = Record<string, boolean>
-
-const inputsValidationStatus: inputsValidation = {};
-let formIsValid = false; 
 
 export class Form extends Block<FormData> {
-  validateForm(inputName:string, isValid:boolean) {
-    inputsValidationStatus[inputName] = isValid;
-    formIsValid = Object.values(inputsValidationStatus).every(value => value);
+  constructor(props: FormData) {
+    // todo change validation method
+    super({ ...props, ...{ inputsValidationStatus: {} } })
+  }
+
+  validateForm(inputName: string, isValid: boolean) {
+    this.props.inputsValidationStatus[inputName] = isValid
+    return Object.values(this.props.inputsValidationStatus).every(
+      (value) => value
+    )
+  }
+
+  setSubmitButtonProps(isFormValid: boolean) {
     if (this.children.button instanceof Block) {
-      if(formIsValid) {
-        this.children.button.setProps({class: ""})
+      if (isFormValid) {
+        this.children.button.setProps({ class: 'button' })
       } else {
-        this.children.button.setProps({class: "disabled"})
+        this.children.button.setProps({ class: 'button disabled' })
       }
     }
   }
 
-  logData() {
-    const formData: FormValues = {};
-    const inputs = Array.from(document.getElementsByTagName("input"))
-    inputs.forEach(input  => {
-      formData[input.name] = input.value
-    })
-    console.log(formData)
+  updateFormState(inputName: string, isInputValid: boolean) {
+    const isFormValid = this.validateForm(inputName, isInputValid)
+
+    this.setSubmitButtonProps(isFormValid)
   }
-  
-  initChildren(){
+
+  initChildren() {
     this.children.button = new Button({
-      class: "disabled",
-      type: "submit",
-      title: this.props.buttonTitle,
-      events: {
-        click: (event) => {
-          this.logData(); 
-          event?.preventDefault();
-        },
-      }
+      class: 'button disabled',
+      type: 'submit',
+      ...this.props.buttonProps,
     })
-    
+
     this.children.link = new Link({
       ...this.props.linkProps,
-      class: 'link'
-    });
-    
-    this.children.fields = this.props.inputFieldProps
-      .map(props => {
-        inputsValidationStatus[props.name] = false; 
-        return new FormField({ 
-            inputProps: props, 
-            validateForm: this.validateForm.bind(this),
-          })
-      } 
-    ); 
+      class: 'link',
+    })
+
+    this.children.fields = this.props.inputFieldProps.map((props) => {
+      this.props.inputsValidationStatus[props.name] = false
+
+      return new FormField({
+        inputProps: props,
+        updateFormState: this.updateFormState.bind(this),
+      })
+    })
   }
-  
+
   render() {
-    return this.compile(formTmpl, {...this.props})
+    return this.compile(formTmpl, { ...this.props })
   }
 }

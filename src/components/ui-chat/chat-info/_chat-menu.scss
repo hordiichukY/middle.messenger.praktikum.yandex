@@ -1,0 +1,75 @@
+.chat-menu {
+  &__button {
+    width: 25px;
+    height: 25px;
+    display: block;
+    border-radius: 100px;
+    border: none;
+    background-image: url('../../static/icons/bars.svg');
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: center;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+    .is-open-true & {
+      background-color: $accentColor;
+    }
+  }
+
+  &__wrap {
+    position: absolute;
+    top: 60px;
+    right: 16px;
+    display: none;
+    gap: 10px;
+
+    padding: 14px;
+    min-width: 210px;
+    background-color: $light;
+    border-radius: 12px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    .is-open-true & {
+      display: grid;
+    }
+  }
+
+  &__user-btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    text-align: left;
+    @include text(14px, $dark, 500);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &::before {
+      content: '';
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 100%;
+    }
+    &.is-add {
+      &::before {
+        background-size: 15px;
+        background-image: url('../../static/icons/add.svg');
+        border: 2px solid $accentColor;
+      }
+    }
+    &.is-delete {
+      &::before {
+        background-size: 10px;
+        background-image: url('../../static/icons/delete.svg');
+        border: 2px solid $errorColor;
+      }
+    }
+  }
+}

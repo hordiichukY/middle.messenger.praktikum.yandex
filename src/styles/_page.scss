@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   @include text(16px, $dark);
-  background-color: $white;
+  background-color: $light;
 
   &_is-dark {
     background-color: $dark;
@@ -20,11 +20,11 @@
 
   &__title {
     text-align: center;
-    @include text(64px, $yellow, 700);
+    @include text(64px, $accentColor, 700);
   }
   &__text {
     margin: 25px 0;
-    @include text(24px, $yellow, 700);
+    @include text(24px, $accentColor, 700);
   }
 
   &__link {

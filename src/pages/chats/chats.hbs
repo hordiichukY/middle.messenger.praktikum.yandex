@@ -1,8 +1,27 @@
 <div class='page chats'>
   <div class='chats__wrap'>
     {{{sidebar}}}
-    <div class='chats__messeges chat'>
-      <p>Choose chat to send the message</p>
+    {{#if activeChatId}}
+      <div class='chats__messages chat'>
+        {{{chatInfo}}}
+        
+        <div class="chat__messages">
+          {{#if hasMessages}}
+            {{#each messages}}
+              {{{this}}}
+            {{/each}}
+          {{else}}
+            <p>No messeges yet</p>
+          {{/if}}
+        </div>
+       
+        {{{sendMessageForm}}}
+      </div>
+    {{else}}
+      <div class='chats__messages chat is-empty'>
+        <p>Choose chat to send the message</p>
+      </div>
+    {{/if}}
     </div>
   </div>
 </div>
