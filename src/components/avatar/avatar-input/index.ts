@@ -1,1 +1,1 @@
-export { AvatarInput } from './avatar-input.templ'
+export { AvatarInput } from './avatar-input.templ';

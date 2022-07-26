@@ -1,1 +1,1 @@
-export { ChatMessage } from './chat-message.templ'
+export { ChatMessage } from './chat-message.templ';

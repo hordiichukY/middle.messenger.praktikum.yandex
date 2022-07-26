@@ -1,30 +1,30 @@
-import FormFieldTmpl from './form-field.hbs'
-import Block from '../../../core/Block'
-import { default as FormInput, FormInputProps } from '../form-input'
-import { FormInputError } from '../form-input-error'
-import { validate } from '../../../utils/validation'
+import FormFieldTmpl from './form-field.hbs';
+import Block from '../../../core/Block';
+import { default as FormInput, FormInputProps } from '../form-input';
+import { FormInputError } from '../form-input-error';
+import { validate } from '../../../utils/validation';
 
 type formFieldProps = {
-  inputProps: FormInputProps
-  updateFormState: (inputName: string, isInputValid: boolean) => void
-}
+  inputProps: FormInputProps;
+  updateFormState: (inputName: string, isInputValid: boolean) => void;
+};
 
 export class FormField extends Block<formFieldProps> {
   constructor(props: formFieldProps) {
-    super(props)
+    super(props);
   }
 
   validateInputValue(value: string) {
-    const inputName = this.props.inputProps.name
-    const isValid = validate(inputName, value)
+    const inputName = this.props.inputProps.name;
+    const isValid = validate(inputName, value);
 
-    this.updateErrorBlock(isValid)
-    this.props.updateFormState(inputName, isValid)
+    this.updateErrorBlock(isValid);
+    this.props.updateFormState(inputName, isValid);
   }
 
   updateErrorBlock(isValid: boolean) {
     if (this.children.error instanceof Block) {
-      this.children.error.setProps({ modifier: isValid ? 'hide' : 'show' })
+      this.children.error.setProps({ showError: isValid ? false : true });
     }
   }
 
@@ -39,14 +39,14 @@ export class FormField extends Block<formFieldProps> {
         input: (event: Event) =>
           this.validateInputValue((event?.target as HTMLInputElement).value),
       },
-    })
+    });
 
     this.children.error = new FormInputError({
       error: this.props.inputProps.error,
-      modifier: 'hide',
-    })
+      showError: false,
+    });
   }
   render() {
-    return this.compile(FormFieldTmpl, { ...this.props })
+    return this.compile(FormFieldTmpl, { ...this.props });
   }
 }

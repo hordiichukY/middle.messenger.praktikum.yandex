@@ -1,9 +1,35 @@
+export type navigationProps = {
+  pathname: string;
+  private: boolean;
+};
+
 export const navigation = {
-  signIn: '/',
-  signUp: '/sign-up',
-  settings: '/settings',
-  messenger: '/messenger',
-  notFound: '/404',
-  serverError: '/500',
-  other: '*',
-}
+  signIn: {
+    pathname: '/',
+    private: false,
+  },
+  signUp: {
+    pathname: '/sign-up',
+    private: false,
+  },
+  settings: {
+    pathname: '/settings',
+    private: true,
+  },
+  messenger: {
+    pathname: '/messenger',
+    private: true,
+  },
+  notFound: {
+    pathname: '/404',
+    private: false,
+  },
+  serverError: {
+    pathname: '/500',
+    private: false,
+  },
+  other: {
+    pathname: '*',
+    private: false,
+  },
+};

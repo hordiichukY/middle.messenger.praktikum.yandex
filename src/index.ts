@@ -1,16 +1,15 @@
-import { default as LoginPage } from '../src/pages/login'
-import { default as RegistrationPage } from '../src/pages/registration'
-import { default as ProfilePage } from '../src/pages/profile'
-import ChatsPage from '../src/pages/chats'
-import { NotFoundPage } from '../src/pages/not-found'
-import { ServerError } from '../src/pages/server-error'
-import Router from './core/Router'
-import AuthController from './controllers/AuthController'
-import { navigation } from './variables/navigation'
-import store from './core/Store'
+import { default as LoginPage } from '../src/pages/login';
+import { default as RegistrationPage } from '../src/pages/registration';
+import { default as ProfilePage } from '../src/pages/profile';
+import ChatsPage from '../src/pages/chats';
+import { NotFoundPage } from '../src/pages/not-found';
+import { ServerError } from '../src/pages/server-error';
+import Router from './core/Router';
+import AuthController from './controllers/AuthController';
+import { navigation } from './variables/navigation';
 
 const { signIn, signUp, settings, messenger, notFound, serverError, other } =
-  navigation
+  navigation;
 
 document.addEventListener('DOMContentLoaded', async () => {
   Router.use(signIn, LoginPage)
@@ -19,15 +18,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use(messenger, ChatsPage)
     .use(notFound, NotFoundPage)
     .use(serverError, ServerError)
-    .use(other, NotFoundPage)
-    .start()
+    .use(other, NotFoundPage);
 
   try {
-    await AuthController.getUser()
-    console.log(store.getState().currentUser)
-    // Router.go(messenger)
+    await AuthController.getUser();
   } catch (e) {
-    // Router.go(signIn)
-    console.log('Error fetching user')
+    console.log('Error fetching user');
   }
-})
+
+  Router.start();
+});

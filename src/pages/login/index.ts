@@ -1,1 +1,1 @@
-export { default } from './login.templ'
+export { default } from './login.templ';

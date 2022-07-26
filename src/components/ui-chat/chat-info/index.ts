@@ -1,1 +1,1 @@
-export { ChatInfo } from './chat-info.templ'
+export { ChatInfo } from './chat-info.templ';

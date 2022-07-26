@@ -1,9 +1,9 @@
 export type PlainObject<T = unknown> = {
-  [k in string]: T
-}
+  [k in string]: T;
+};
 
 export function isArray(value: unknown): value is [] {
-  return Array.isArray(value)
+  return Array.isArray(value);
 }
 
 export function isPlainObject(value: unknown): value is PlainObject {
@@ -12,9 +12,9 @@ export function isPlainObject(value: unknown): value is PlainObject {
     value !== null &&
     value.constructor === Object &&
     Object.prototype.toString.call(value) === '[object Object]'
-  )
+  );
 }
 
 export function isArrayOrObject(value: unknown): value is [] | PlainObject {
-  return isPlainObject(value) || isArray(value)
+  return isPlainObject(value) || isArray(value);
 }

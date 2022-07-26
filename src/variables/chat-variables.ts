@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 export const createChatInputProps = {
   id: nanoid(6),
@@ -7,7 +7,7 @@ export const createChatInputProps = {
   placeholder: 'Enter chat name',
   required: 'required',
   error: 'This field is required',
-}
+};
 
 export const addUserInputProps = {
   id: nanoid(6),
@@ -16,7 +16,7 @@ export const addUserInputProps = {
   placeholder: 'Enter login',
   required: 'required',
   error: 'This field is required',
-}
+};
 
 export const deleteUserInputProps = {
   id: nanoid(6),
@@ -25,4 +25,4 @@ export const deleteUserInputProps = {
   placeholder: 'Enter login',
   required: 'required',
   error: 'This field is required',
-}
+};

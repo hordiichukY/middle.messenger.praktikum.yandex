@@ -1,27 +1,27 @@
-import chatNavTmpl from './chat-nav.hbs'
-import { Link } from '../../link'
-import Block from '../../../core/Block'
-import { withRouter } from '../../../core/withRouter'
-import { navigation } from '../../../variables/navigation'
-import { Router } from '../../../core/Router'
-import { Button } from '../../button'
-import { Modal } from '../../modal'
-import { createChatInputProps } from '../../../variables/chat-variables'
+import chatNavTmpl from './chat-nav.hbs';
+import { Link } from '../../link';
+import Block from '../../../core/Block';
+import { withRouter } from '../../../core/withRouter';
+import { navigation } from '../../../variables/navigation';
+import { Router } from '../../../core/Router';
+import { Button } from '../../button';
+import { Modal } from '../../modal';
+import { createChatInputProps } from '../../../variables/chat-variables';
 
 type ChatNavProps = {
-  router: Router
-  hasModal: string
-}
+  router: Router;
+  hasModal: string;
+};
 class ChatNav extends Block<ChatNavProps> {
   constructor(props: ChatNavProps) {
-    super(props)
+    super(props);
   }
 
   openModal() {
     if (!(this.children.newChatModal instanceof Block)) {
-      return
+      return;
     }
-    this.children.newChatModal.setProps({ isShown: true })
+    this.children.newChatModal.setProps({ isShown: true });
   }
 
   initChildren(): void {
@@ -29,19 +29,19 @@ class ChatNav extends Block<ChatNavProps> {
       class: 'link chat-nav__link',
       title: 'Profile',
       events: {
-        click: () => this.props.router.go(navigation.settings),
+        click: () => this.props.router.go(navigation.settings.pathname),
       },
-    })
+    });
 
     this.children.newChatBtn = new Button({
       class: 'chat-nav__btn',
       type: 'button',
       events: {
         click: () => {
-          this.openModal()
+          this.openModal();
         },
       },
-    })
+    });
 
     this.children.newChatModal = new Modal({
       title: 'Create chat',
@@ -56,14 +56,14 @@ class ChatNav extends Block<ChatNavProps> {
       },
       isShown: false,
       action: 'create-chat',
-    })
+    });
   }
 
   createChat() {}
 
   render() {
-    return this.compile(chatNavTmpl, { ...this.props })
+    return this.compile(chatNavTmpl, { ...this.props });
   }
 }
 
-export default withRouter(ChatNav)
+export default withRouter(ChatNav);

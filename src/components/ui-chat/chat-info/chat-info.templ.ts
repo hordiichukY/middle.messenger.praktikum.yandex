@@ -1,21 +1,21 @@
-import Block from '../../../core/Block'
+import Block from '../../../core/Block';
 import {
   addUserInputProps,
   deleteUserInputProps,
-} from '../../../variables/chat-variables'
-import { Button } from '../../button'
-import { Modal } from '../../modal'
-import chatInfoTmpl from './chat-info.hbs'
+} from '../../../variables/chat-variables';
+import { Button } from '../../button';
+import { Modal } from '../../modal';
+import chatInfoTmpl from './chat-info.hbs';
 
 type ChatInfoProps = {
-  title: string
-  isMenuOpen?: boolean
-}
+  title: string;
+  isMenuOpen?: boolean;
+};
 
 export class ChatInfo extends Block<ChatInfoProps> {
   constructor(props: ChatInfoProps) {
-    super(props)
-    this.props.isMenuOpen = false
+    super(props);
+    this.props.isMenuOpen = false;
   }
 
   initChildren(): void {
@@ -23,10 +23,10 @@ export class ChatInfo extends Block<ChatInfoProps> {
       class: 'chat-menu__button',
       events: {
         click: () => {
-          this.props.isMenuOpen = this.props.isMenuOpen ? false : true
+          this.props.isMenuOpen = this.props.isMenuOpen ? false : true;
         },
       },
-    })
+    });
 
     this.children.addUserBtn = new Button({
       class: 'chat-menu__user-btn is-add',
@@ -34,13 +34,13 @@ export class ChatInfo extends Block<ChatInfoProps> {
       events: {
         click: () => {
           if (!(this.children.addUserModal instanceof Block)) {
-            return
+            return;
           }
-          this.children.addUserModal.setProps({ isShown: true })
-          this.closeMenu()
+          this.children.addUserModal.setProps({ isShown: true });
+          this.closeMenu();
         },
       },
-    })
+    });
 
     this.children.deleteUserBtn = new Button({
       class: 'chat-menu__user-btn is-delete',
@@ -48,13 +48,13 @@ export class ChatInfo extends Block<ChatInfoProps> {
       events: {
         click: () => {
           if (!(this.children.deleteUserModal instanceof Block)) {
-            return
+            return;
           }
-          this.children.deleteUserModal.setProps({ isShown: true })
-          this.closeMenu()
+          this.children.deleteUserModal.setProps({ isShown: true });
+          this.closeMenu();
         },
       },
-    })
+    });
 
     this.children.addUserModal = new Modal({
       title: 'Add user',
@@ -69,7 +69,7 @@ export class ChatInfo extends Block<ChatInfoProps> {
       },
       isShown: false,
       action: 'add-user',
-    })
+    });
 
     this.children.deleteUserModal = new Modal({
       title: 'Delete user',
@@ -84,12 +84,12 @@ export class ChatInfo extends Block<ChatInfoProps> {
       },
       isShown: false,
       action: 'delete-user',
-    })
+    });
   }
 
-  closeMenu = () => (this.props.isMenuOpen = false)
+  closeMenu = () => (this.props.isMenuOpen = false);
 
   render() {
-    return this.compile(chatInfoTmpl, { ...this.props })
+    return this.compile(chatInfoTmpl, { ...this.props });
   }
 }

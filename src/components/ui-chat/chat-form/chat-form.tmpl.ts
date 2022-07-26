@@ -1,14 +1,14 @@
-import Block from '../../../core/Block'
-import { Button } from '../../button'
-import FormInput from '../../ui-form/form-input'
-import chatFormTmpl from './chat-form.hbs'
-import ChatsController from '../../../controllers/ChatsController'
+import Block from '../../../core/Block';
+import { Button } from '../../button';
+import FormInput from '../../ui-form/form-input';
+import chatFormTmpl from './chat-form.hbs';
+import ChatsController from '../../../controllers/ChatsController';
 
-type ChatFormProps = {}
+type ChatFormProps = {};
 
 export class ChatForm extends Block<ChatFormProps> {
   constructor(props: ChatFormProps) {
-    super(props)
+    super(props);
   }
 
   initChildren(): void {
@@ -20,49 +20,48 @@ export class ChatForm extends Block<ChatFormProps> {
       required: 'required',
       events: {
         input: () => {
-          const isFormValid = this.validateForm()
+          const isFormValid = this.validateForm();
           if (!(this.children.submitBtn instanceof Block)) {
-            return
+            return;
           }
           if (isFormValid) {
-            this.children.submitBtn.setProps({ class: 'chat-form__button' })
+            this.children.submitBtn.setProps({ disabled: false });
           } else {
-            this.children.submitBtn.setProps({
-              class: 'chat-form__button disabled',
-            })
+            this.children.submitBtn.setProps({ disabled: true });
           }
         },
       },
-    })
+    });
 
     this.children.submitBtn = new Button({
       type: 'submit',
-      class: 'chat-form__button disabled',
+      class: 'chat-form__button',
+      disabled: true,
       events: {
         click: (event: Event) => {
-          event.preventDefault()
+          event.preventDefault();
           const input = document.querySelector(
             'input[name="message"]'
-          ) as HTMLInputElement
+          ) as HTMLInputElement;
 
-          ChatsController.sendMessage(input.value)
-          input.value = ''
+          ChatsController.sendMessage(input.value);
+          input.value = '';
         },
       },
-    })
+    });
   }
 
   validateForm() {
     const input = document.querySelector(
       'input[name="message"]'
-    ) as HTMLInputElement
+    ) as HTMLInputElement;
     if (input && input.value.trim()) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 
   render() {
-    return this.compile(chatFormTmpl, { ...this.props })
+    return this.compile(chatFormTmpl, { ...this.props });
   }
 }

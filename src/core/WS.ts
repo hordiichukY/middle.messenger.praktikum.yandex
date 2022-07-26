@@ -1,4 +1,4 @@
-import { EventBus } from './EventBus'
+import { EventBus } from './EventBus';
 
 export enum WSEvents {
   MESSAGE = 'message',
@@ -14,25 +14,26 @@ export enum WS_READY_STATE {
 }
 
 export class WS extends EventBus {
-  private _socket: WebSocket
+  private _socket: WebSocket;
 
   constructor(url: string, chatId: number) {
-    super()
-    this._socket = new WebSocket(url)
+    super();
+    this._socket = new WebSocket(url);
 
     this._socket.addEventListener('open', () => {
-      this.emit(WSEvents.OPEN, { chatId })
-    })
+      this.emit(WSEvents.OPEN, { chatId });
+    });
 
     this._socket.addEventListener('close', () => {
-      this.emit(WSEvents.CLOSED, { chatId })
-    })
+      this.emit(WSEvents.CLOSED, { chatId });
+    });
 
-    this._socket.addEventListener('error', () => {})
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    this._socket.addEventListener('error', () => {});
 
     this._socket.addEventListener('message', ({ data }) => {
-      this.emit(WSEvents.MESSAGE, { chatId, message: JSON.parse(data) })
-    })
+      this.emit(WSEvents.MESSAGE, { chatId, message: JSON.parse(data) });
+    });
   }
 
   sendMessage(content: string) {
@@ -41,11 +42,11 @@ export class WS extends EventBus {
         content,
         type: 'message',
       })
-    )
+    );
   }
 
   sendPingMessage() {
-    this._socket.send(JSON.stringify({ type: 'ping' }))
+    this._socket.send(JSON.stringify({ type: 'ping' }));
   }
 
   getOldMessages() {
@@ -54,10 +55,10 @@ export class WS extends EventBus {
         content: '0',
         type: 'get old',
       })
-    )
+    );
   }
 
   get getReadyState() {
-    return this._socket.readyState
+    return this._socket.readyState;
   }
 }

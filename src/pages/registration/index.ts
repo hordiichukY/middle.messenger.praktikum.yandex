@@ -1,1 +1,1 @@
-export { default } from './registration.templ'
+export { default } from './registration.templ';
