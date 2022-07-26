@@ -15,6 +15,7 @@ export class AvatarBlock extends Block<AvatarProps> {
   constructor(props: AvatarProps) {
     super(props);
     this.props.isEditMode = false;
+    this.props.resoursePath = `${URLS.RESOURCES_URL}`;
   }
 
   initChildren(): void {
@@ -116,7 +117,6 @@ export class AvatarBlock extends Block<AvatarProps> {
   }
 
   render() {
-    this.props.resoursePath = `${URLS.RESOURCES_URL}`;
     return this.compile(AvatarTmpl, { ...this.props });
   }
 }

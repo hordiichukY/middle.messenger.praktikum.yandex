@@ -59,8 +59,6 @@ class ChatNav extends Block<ChatNavProps> {
     });
   }
 
-  createChat() {}
-
   render() {
     return this.compile(chatNavTmpl, { ...this.props });
   }

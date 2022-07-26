@@ -1,6 +1,6 @@
 import formInputTmpl from './form-input.hbs';
 import Block from '../../../core/Block';
-import { User } from '../../../utils/types/userData';
+import { User, UserFieldsKeys } from '../../../utils/types/userData';
 
 export type FormInputProps = {
   currentUser?: User;
@@ -23,21 +23,21 @@ export type FormInputProps = {
 export class FormInputBlock extends Block<FormInputProps> {
   constructor(props: FormInputProps) {
     super(props);
+    this.checkInputValue();
   }
 
   checkInputValue() {
-    const currentUser = JSON.parse(JSON.stringify(this.props?.currentUser));
+    const currentUser = this.props?.currentUser;
     if (!currentUser) {
       return;
     }
-    const inputName = this.props.name;
+    const inputName = this.props.name as UserFieldsKeys;
     if (currentUser[inputName]) {
-      this.props.value = currentUser[inputName];
+      this.props.value = `${currentUser[inputName]}`;
     }
   }
 
   render() {
-    this.checkInputValue();
     return this.compile(formInputTmpl, { ...this.props });
   }
 }

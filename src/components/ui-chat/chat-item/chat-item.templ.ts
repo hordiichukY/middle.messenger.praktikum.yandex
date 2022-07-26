@@ -30,14 +30,9 @@ export type ChatItemProps = {
 export class ChatItem extends Block<ChatItemProps> {
   constructor(props: ChatItemProps) {
     super(props);
+    this.props.resoursePath = `${URLS.RESOURCES_URL}`;
   }
   render() {
-    if (this.props?.last_message?.time) {
-      // todo - differnce in time for 24h/yesterday ...
-      const date = new Date(this.props.last_message.time);
-      this.props.time = `${date.getDate()}.${date.getMonth()}`;
-    }
-    this.props.resoursePath = `${URLS.RESOURCES_URL}`;
     return this.compile(chatItemTmpl, { ...this.props });
   }
 }
