@@ -1,6 +1,10 @@
 import { Route } from './Route';
 import Store from './Store';
-import { navigation, navigationProps } from '../variables/navigation';
+import {
+  authorizationPathnames,
+  navigation,
+  navigationProps,
+} from '../variables/navigation';
 
 export class Router {
   private static __instance: Router;
@@ -30,11 +34,9 @@ export class Router {
       this._onRoute((event.currentTarget as Window).location.pathname);
     };
     const { pathname } = window.location;
-    if (!this.isRouteAccessible(pathname)) {
-      this.go(navigation.signIn.pathname);
-      return;
+    if (!this.redirectUser(pathname)) {
+      this._onRoute(pathname);
     }
-    this._onRoute(pathname);
   }
 
   _onRoute(pathname: string) {
@@ -72,11 +74,27 @@ export class Router {
 
   isRouteAccessible(pathname: string) {
     const route = this.getRoute(pathname);
-    if (!Store.getState().currentUser && route?.private) {
+    if (!this.hasUser() && route?.private) {
       return false;
     }
 
     return true;
+  }
+
+  redirectUser(pathname: string) {
+    if (this.hasUser() && authorizationPathnames.includes(pathname)) {
+      this.go(navigation.messenger.pathname);
+      return true;
+    }
+    if (!this.isRouteAccessible(pathname)) {
+      this.go(navigation.signIn.pathname);
+      return true;
+    }
+    return false;
+  }
+
+  hasUser() {
+    return Store.getState().currentUser ? true : false;
   }
 }
 

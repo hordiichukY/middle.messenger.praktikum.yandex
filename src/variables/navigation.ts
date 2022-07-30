@@ -33,3 +33,8 @@ export const navigation = {
     private: false,
   },
 };
+
+export const authorizationPathnames = [
+  navigation.signIn.pathname,
+  navigation.signUp.pathname,
+];
