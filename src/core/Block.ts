@@ -14,6 +14,7 @@ class Block<TProps = Record<string, unknown>> {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
+    FLOW_CDUM: 'flow:component-did-unmount',
   };
 
   protected id: string;
@@ -44,6 +45,7 @@ class Block<TProps = Record<string, unknown>> {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDUM, this.componentDidUnmount.bind(this));
   }
 
   protected init() {
@@ -55,6 +57,8 @@ class Block<TProps = Record<string, unknown>> {
   }
 
   protected componentDidMount() {}
+
+  protected componentDidUnmount() {}
 
   protected dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -153,6 +157,7 @@ class Block<TProps = Record<string, unknown>> {
   }
 
   hide() {
+    this.eventBus().emit(Block.EVENTS.FLOW_CDUM);
     this.getContent().style.display = 'none';
   }
 

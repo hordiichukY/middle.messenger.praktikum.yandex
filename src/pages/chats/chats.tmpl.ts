@@ -7,6 +7,7 @@ import { ChatForm } from '../../components/ui-chat/chat-form';
 import { ChatMessage } from '../../components/ui-chat/chat-message';
 import { User } from '../../utils/types/userData';
 import { ChatMessageProps } from '../../utils/types/chatData';
+import Store, { StoreEvents } from '../../core/Store';
 
 type ChatsPageProps = {
   activeChatId?: number;
@@ -20,21 +21,25 @@ export class ChatsPageBlock extends Block<ChatsPageProps> {
   constructor(props: ChatsPageProps) {
     super(props);
     this.props.hasMessages = false;
+    Store.on(StoreEvents.Updated, () => {
+      this.handleStoreUpdate();
+    });
   }
 
   initChildren() {
     this.children.sidebar = new ChatSidebar({});
     this.children.sendMessageForm = new ChatForm({});
+    this.children.chatInfo = new ChatInfo({
+      title: '',
+    });
   }
 
-  renderChatInfo(chats: ChatItemProps[]) {
+  updateChatTitle(chats: ChatItemProps[], activeChatId: number) {
     const activeChat = chats.find(
-      (chat) => chat.id === this.props.activeChatId
+      (chat) => chat.id === activeChatId
     ) as ChatItemProps;
 
-    this.children.chatInfo = new ChatInfo({
-      title: activeChat.title,
-    });
+    (this.children.chatInfo as Block).setProps({ title: activeChat.title });
   }
 
   renderMessages(messages: ChatMessageProps[]) {
@@ -48,24 +53,27 @@ export class ChatsPageBlock extends Block<ChatsPageProps> {
       });
   }
 
-  render() {
-    const activeChatId = this.props.activeChatId;
+  handleStoreUpdate() {
+    const activeChatId = Store.getState().activeChatId;
 
     if (!activeChatId || !this.props.chats) {
-      return this.compile(chatsPageTmpl, { ...this.props });
+      return;
     }
 
-    this.renderChatInfo(this.props.chats);
+    this.updateChatTitle(this.props.chats, activeChatId);
 
-    if (!this.props.chatMessages?.[activeChatId]?.length) {
+    const activeChatMessages = Store.getState().chatMessages?.[activeChatId];
+
+    if (!activeChatMessages?.length) {
       this.props.hasMessages = false;
-      return this.compile(chatsPageTmpl, { ...this.props });
+      return;
     }
 
     this.props.hasMessages = true;
+    this.renderMessages(activeChatMessages);
+  }
 
-    this.renderMessages(this.props.chatMessages[activeChatId]);
-
+  render() {
     return this.compile(chatsPageTmpl, { ...this.props });
   }
 }

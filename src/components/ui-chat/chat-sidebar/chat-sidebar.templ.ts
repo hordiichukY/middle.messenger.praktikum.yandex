@@ -1,40 +1,42 @@
 import chatSidebarTmpl from './chat-sidebar.hbs';
 import { ChatNav } from '../chat-nav';
-import { ChatItem, ChatItemProps } from '../chat-item';
+import { ChatItemProps } from '../chat-item';
+import ChatItem from '../chat-item';
 import Block from '../../../core/Block';
 import ChatsController from '../../../controllers/ChatsController';
+import { StoreEvents } from '../../../core/Store';
+import Store from '../../../core/Store';
 
 export type ChatSidebarProps = {
   chats?: ChatItemProps[];
-  activeChatId?: number;
 };
 
 export class ChatSidebarBlock extends Block<ChatSidebarProps> {
   constructor(props: ChatSidebarProps) {
     super(props);
     ChatsController.init();
+    Store.on(StoreEvents.Updated, () => {
+      this.setChats();
+    });
   }
 
   initChildren() {
-    this.children.navigation = new ChatNav({});
+    this.children.navigation = new ChatNav({}) as Block;
+    this.setChats();
   }
 
-  render() {
-    if (this.props.chats) {
+  setChats() {
+    if (this.props.chats?.length) {
       this.children.chats = this.props.chats.map(
         (props) =>
           new ChatItem({
             ...props,
-            events: {
-              click: (event: Event) => {
-                event.stopPropagation();
-                ChatsController.setActiveChatId(props.id);
-              },
-            },
-            class: props.id === this.props.activeChatId ? 'is-active' : '',
           })
       );
     }
+  }
+
+  render() {
     return this.compile(chatSidebarTmpl, { ...this.props });
   }
 }

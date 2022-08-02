@@ -2,6 +2,8 @@
   padding-top: 20px;
   background-color: $dark;
   &__list {
+    max-height: calc(100vh - 120px);
+    overflow: scroll;
     list-style: none;
   }
 }
