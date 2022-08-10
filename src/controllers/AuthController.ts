@@ -1,5 +1,5 @@
 import { AuthApi } from '../api/AuthAPI';
-import Router from '../core/Router';
+import { Router } from '../core/Router';
 import Store from '../core/Store';
 import { SignUpData, SignInData } from '../utils/types/authData';
 import { navigation } from '../variables/navigation';
@@ -8,6 +8,7 @@ const { signIn, messenger } = navigation;
 
 class AuthController {
   private api: AuthApi;
+  router: Router = new Router();
   constructor() {
     this.api = new AuthApi();
   }
@@ -18,7 +19,7 @@ class AuthController {
       const response = await this.api.signUp(data);
       if (response && typeof response !== 'string' && !('reason' in response)) {
         await this.getUser();
-        Router.go(messenger.pathname);
+        this.router.go(messenger.pathname);
       }
     } catch (e) {
       throw new Error(e?.reason);
@@ -32,7 +33,7 @@ class AuthController {
     try {
       await this.api.signIn(data);
       await this.getUser();
-      Router.go(messenger.pathname);
+      this.router.go(messenger.pathname);
     } catch (e) {
       throw new Error(e?.reason);
     }
@@ -41,7 +42,7 @@ class AuthController {
   async logout() {
     try {
       await this.api.logout();
-      Router.go(signIn.pathname);
+      this.router.go(signIn.pathname);
     } catch (e) {
       throw new Error(e);
     }

@@ -126,18 +126,7 @@ class Block<TProps = Record<string, unknown>> {
     return document.createElement(tagName);
   }
 
-  private removeEvents() {
-    const events: Events = (this.props as any).events as Events;
-    if (!events || !this._element) {
-      return;
-    }
-
-    Object.entries(events).forEach(([event, listener]) => {
-      if (this._element) {
-        this._element.removeEventListener(event, listener);
-      }
-    });
-  }
+  // add removeEvents
 
   private addEvents() {
     const events: Events = (this.props as any).events as Events;

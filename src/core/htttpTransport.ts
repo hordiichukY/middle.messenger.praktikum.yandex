@@ -18,11 +18,10 @@ type OptionsT = {
 };
 
 export class HTTPTransport {
-  static API_URL = URLS.API_URL;
   protected endpoint: string;
 
-  constructor(endpoint: string) {
-    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  constructor(endpoint: string, API_URL: URLS | string = URLS.API_URL) {
+    this.endpoint = `${API_URL}${endpoint}`;
   }
 
   public get<Response>(path: string): Promise<Response> {

@@ -4,15 +4,18 @@ import { default as ProfilePage } from '../src/pages/profile';
 import ChatsPage from '../src/pages/chats';
 import { NotFoundPage } from '../src/pages/not-found';
 import { ServerError } from '../src/pages/server-error';
-import Router from './core/Router';
+import { Router } from './core/Router';
 import AuthController from './controllers/AuthController';
 import { navigation } from './variables/navigation';
 
 const { signIn, signUp, settings, messenger, notFound, serverError, other } =
   navigation;
 
+const router = new Router();
+
 document.addEventListener('DOMContentLoaded', async () => {
-  Router.use(signIn, LoginPage)
+  router
+    .use(signIn, LoginPage)
     .use(signUp, RegistrationPage)
     .use(settings, ProfilePage)
     .use(messenger, ChatsPage)
@@ -26,5 +29,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Error fetching user');
   }
 
-  Router.start();
+  router.start();
 });

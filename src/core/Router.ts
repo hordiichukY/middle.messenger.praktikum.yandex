@@ -97,5 +97,3 @@ export class Router {
     return Store.getState().currentUser ? true : false;
   }
 }
-
-export default new Router();
