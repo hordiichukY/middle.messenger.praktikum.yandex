@@ -4,7 +4,7 @@ import FormInput from '../../ui-form/form-input';
 import chatFormTmpl from './chat-form.hbs';
 import ChatsController from '../../../controllers/ChatsController';
 
-type ChatFormProps = {};
+type ChatFormProps = Record<string, unknown>;
 
 export class ChatForm extends Block<ChatFormProps> {
   constructor(props: ChatFormProps) {
