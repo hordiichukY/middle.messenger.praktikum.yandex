@@ -5,10 +5,12 @@
   "description": "",
   "scripts": {
     "start": "npm run build && node server.js",
+    "dev": "webpack-dev-server --open --config webpack.dev.js --port 3000",
+    "build": "webpack --config webpack.prod.js",
     "eslint": "eslint src/",
     "test": "mocha",
-    "dev": "webpack-dev-server --open --config webpack.dev.js --port 3000",
-    "build": "webpack --config webpack.prod.js"
+    "validate": "npm-run-all --parallel test eslint",
+    "precommit": "npm run validate"
   },
   "repository": {
     "type": "git",
@@ -38,10 +40,12 @@
     "eslint-plugin-prettier": "4.0.0",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.1",
     "jsdom": "20.0.0",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "2.6.1",
     "mocha": "10.0.0",
+    "npm-run-all": "4.1.5",
     "prettier": "2.6.2",
     "sass": "1.54.4",
     "sass-loader": "13.0.2",
@@ -60,5 +64,10 @@
     "handlebars": "4.7.7",
     "handlebars-loader": "1.7.2",
     "nanoid": "3.3.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "precommit"
+    }
   }
 }
