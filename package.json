@@ -9,6 +9,7 @@
     "build": "webpack --config webpack.prod.js",
     "eslint": "eslint src/",
     "test": "mocha",
+    "prepare": "husky install",
     "validate": "npm-run-all --parallel test eslint",
     "precommit": "npm run validate"
   },
