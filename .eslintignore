@@ -1,4 +1,4 @@
 node_modules
 dist
 server.js
-*.config.js
+*.js

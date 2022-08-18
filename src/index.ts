@@ -8,6 +8,9 @@ import { Router } from './core/Router';
 import AuthController from './controllers/AuthController';
 import { navigation } from './variables/navigation';
 
+import './styles/reset.scss';
+import './styles/index.scss';
+
 const { signIn, signUp, settings, messenger, notFound, serverError, other } =
   navigation;
 

@@ -10,6 +10,7 @@
 npm install
 npm run dev
 npm run build
+npm run test
 ```
 
 Express
@@ -33,4 +34,3 @@ npm run start
 - [500](https://cozy-basbousa-050a54.netlify.app/500)
 
 Pull request link: https://github.com/hordiichukY/middle.messenger.praktikum.yandex/pull/3
-
