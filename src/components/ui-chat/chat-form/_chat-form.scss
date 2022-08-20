@@ -19,13 +19,14 @@
     height: 30px;
     border-radius: 100%;
     background-color: $accentColor;
-    background-image: url('../../static/icons/arrow.svg');
+    background-image: url("../../static/icons/arrow.svg");
     background-repeat: no-repeat;
     background-size: 12px auto;
     background-position: center;
     border: none;
     cursor: pointer;
     transform: rotate(180deg);
+
     &.disabled {
       background-color: $disabled;
       pointer-events: none;

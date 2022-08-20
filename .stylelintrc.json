@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/dollar-variable-pattern": null,
+    "scss/at-import-partial-extension": null,
+    "string-quotes": null,
+    "selector-class-pattern": null,
+    "no-descending-specificity": null
+
+  }
+}

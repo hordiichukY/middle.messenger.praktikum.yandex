@@ -8,7 +8,9 @@
   height: 54px;
   padding: 0 16px 0 25px;
   border-bottom: 1px solid $chatColor;
+
   @include text(13px, $dark, 600, 15px);
+
   z-index: 5;
 
   &__name {
@@ -23,6 +25,7 @@
     object-fit: cover;
     border-radius: 100%;
     margin-right: 10px;
+
     &.is-empty {
       background-color: $chatColor;
     }

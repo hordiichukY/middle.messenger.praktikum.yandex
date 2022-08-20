@@ -1,6 +1,7 @@
 .chat-nav {
   padding: 0 10px;
   margin-bottom: 25px;
+
   &__top {
     margin-bottom: 20px;
     width: 100%;
@@ -11,15 +12,17 @@
 
   &__link {
     @include text(15px, $accentColor, 600, 16px);
+
     display: flex;
     align-items: center;
     text-decoration: none;
     transition: 0.1s all;
+
     &::after {
-      content: '';
+      content: "";
       width: 10px;
       height: 15px;
-      background-image: url('../../static/icons/link-arrow.svg');
+      background-image: url("../../static/icons/link-arrow.svg");
       background-repeat: no-repeat;
       background-position: center;
       filter: $filterYellow;
@@ -38,7 +41,7 @@
     height: 20px;
     border: none;
     background-color: transparent;
-    background-image: url('../../static/icons/chat-nav-btn.svg');
+    background-image: url("../../static/icons/chat-nav-btn.svg");
     background-repeat: no-repeat;
     background-position: center;
     transition: 0.1s opacity;
@@ -66,6 +69,7 @@
 
     &:focus {
       border: 1px solid $accentColor;
+
       @include text(14px, $dark, 400, 14px);
 
       & + label {
@@ -79,9 +83,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     @include text(16px, $chatColorDark, 400, 16px);
+
     padding: 0 25px;
-    background-image: url('../../static/icons/search.svg');
+    background-image: url("../../static/icons/search.svg");
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 20px;

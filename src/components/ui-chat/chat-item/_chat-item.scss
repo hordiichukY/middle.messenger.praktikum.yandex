@@ -32,6 +32,7 @@
   &__text {
     @include line-clamp(2);
     @include text(12px, $chatColor, 400, 16px);
+
     opacity: 0.5;
   }
 
@@ -44,6 +45,7 @@
 
   &__time {
     text-align: center;
+
     @include text(9px, $light, 500);
   }
 
@@ -58,13 +60,14 @@
     background-color: $accentColor;
     border-radius: 100%;
     text-align: center;
+
     @include text(11px, $dark, 500);
   }
 
   &:hover,
   &.is-active {
     margin: 0;
-    padding: 15px 15px;
+    padding: 15px;
     background-color: $accentColor;
     border-top: none;
   }
@@ -74,13 +77,16 @@
     &__name {
       color: $dark;
     }
+
     &__text {
       color: $dark;
       opacity: 0.5;
     }
+
     &__unread {
       background-color: $chatColorDark;
     }
+
     &__time {
       color: $dark;
     }

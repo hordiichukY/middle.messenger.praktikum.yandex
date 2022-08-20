@@ -6,11 +6,13 @@
   text-align: center;
   border: 1px solid $dark;
   border-radius: 40px;
+
   @include text(16px, $baseColor1, 400, 40px);
 
   &:focus {
     outline: none;
     border: 1px solid $accentColor;
+
     &::placeholder {
       opacity: 0;
     }
@@ -20,6 +22,7 @@
     background: $disabled;
     border: 1px solid $disabled;
     pointer-events: none;
+
     &::placeholder {
       color: $light;
     }
@@ -32,9 +35,12 @@
   &__error {
     position: absolute;
     bottom: 0;
+
     @include text(10px, $errorColor, 400, 15px);
+
     padding: 0 10px;
     display: block;
+
     &_hidden {
       display: none;
     }
@@ -43,6 +49,7 @@
   &__label {
     display: block;
     padding: 2px 15px;
+
     @include text(12px, $dark, 400, 16px);
   }
 }

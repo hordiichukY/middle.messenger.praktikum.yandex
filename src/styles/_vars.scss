@@ -1,17 +1,15 @@
 $dark: #0d0d0d;
 $light: #fff;
-$accentColor: #ffee55;
-$baseColor1: rgba(13, 13, 13, 0.7);
-$errorColor: #ff0000;
-$successColor: rgb(80, 200, 120);
-$disabled: rgba(82, 82, 82, 0.5);
+$accentColor: #fe5;
+$baseColor1: rgb(13 13 13 / 70%);
+$errorColor: #f00;
+$successColor: rgb(80 200 120);
+$disabled: rgb(82 82 82 / 50%);
 $chatColor: #efefef;
-$chatColorDark: #999999;
-
+$chatColorDark: #999;
 $filterYellow: invert(74%) sepia(100%) saturate(287%) hue-rotate(358deg)
   brightness(106%) contrast(102%);
-$btnShadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
+$btnShadow: drop-shadow(0 4px 4px rgb(0 0 0 / 25%));
 $breakpoints: (
   bp540: 540px,
   bp768: 768px,
