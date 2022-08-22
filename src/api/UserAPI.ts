@@ -42,9 +42,4 @@ export class UserApi extends BaseAPI {
       headers: defaultHeader,
     });
   }
-
-  create = undefined;
-  request = undefined;
-  update = undefined;
-  delete = undefined;
 }

@@ -44,9 +44,4 @@ export class ChatsAPI extends BaseAPI {
       `${API.CHAT_ID_TOKEN}/${chatId}`
     );
   }
-
-  create = undefined;
-  request = undefined;
-  update = undefined;
-  delete = undefined;
 }

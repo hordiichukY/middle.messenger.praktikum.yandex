@@ -34,9 +34,4 @@ export class AuthApi extends BaseAPI {
   read() {
     return AuthAPIInstance.get<UserResponse>(API.USER);
   }
-
-  create = undefined;
-  request = undefined;
-  update = undefined;
-  delete = undefined;
 }
