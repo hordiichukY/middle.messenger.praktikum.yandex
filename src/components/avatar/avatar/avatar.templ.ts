@@ -35,7 +35,7 @@ export class AvatarBlock extends Block<AvatarProps> {
       title: 'Save',
       disabled: true,
       events: {
-        click: () => {
+        click: (event: Event) => {
           event?.preventDefault();
           this.changeAvatar();
         },

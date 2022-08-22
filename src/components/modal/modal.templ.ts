@@ -37,7 +37,7 @@ export class Modal extends Block<ModalProps> {
       type: 'submit',
       ...this.props.buttonProps,
       events: {
-        click: () => {
+        click: (event: Event) => {
           event?.preventDefault();
           this.handleClick(this.props.action);
         },
