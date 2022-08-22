@@ -11,9 +11,11 @@
 
   &__title {
     @include text(20px, $dark, 500);
+
     text-align: center;
     text-transform: capitalize;
   }
+
   &__inputs {
     margin: 20px 0 30px;
     display: grid;

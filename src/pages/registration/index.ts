@@ -1,1 +1,1 @@
-export { default } from './registration.templ'
+export { default as RegistrationPage } from './registration.templ';

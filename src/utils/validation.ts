@@ -1,4 +1,4 @@
-type Patterns = Record<string, RegExp>
+type Patterns = Record<string, RegExp>;
 
 const patterns: Patterns = {
   first_name: /^[A-ZА-Я][a-zа-я-]*$/,
@@ -9,28 +9,28 @@ const patterns: Patterns = {
   phone: /^[+]?[0-9]{10,15}$/,
   newPassword:
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/ /* eslint-disable-line */,
-}
+};
 
 export const validate = (inputName: string, valueToValidate: string) => {
   if (inputName === 'oldPassword') {
-    return true
+    return true;
   }
   if (inputName === 'retype') {
     const passwordElement = document.querySelector(
       "[name='password']"
-    ) as HTMLInputElement
+    ) as HTMLInputElement;
 
     const newPasswordElement = document.querySelector(
       "[name='newPassword']"
-    ) as HTMLInputElement
+    ) as HTMLInputElement;
 
-    const activePassword = passwordElement ?? newPasswordElement
+    const activePassword = passwordElement ?? newPasswordElement;
 
-    return activePassword.value === valueToValidate
+    return activePassword.value === valueToValidate;
   }
 
   if (!patterns[inputName] || !valueToValidate) {
-    return false
+    return false;
   }
-  return new RegExp(patterns[inputName]).test(valueToValidate)
-}
+  return new RegExp(patterns[inputName]).test(valueToValidate);
+};

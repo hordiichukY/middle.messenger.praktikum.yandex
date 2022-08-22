@@ -4,7 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   @include text(16px, $dark);
+
   background-color: $light;
 
   &_is-dark {
@@ -20,10 +22,13 @@
 
   &__title {
     text-align: center;
+
     @include text(64px, $accentColor, 700);
   }
+
   &__text {
     margin: 25px 0;
+
     @include text(24px, $accentColor, 700);
   }
 

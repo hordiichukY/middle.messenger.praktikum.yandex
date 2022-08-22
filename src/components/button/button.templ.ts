@@ -1,18 +1,19 @@
-import buttonTmpl from './button.hbs'
-import Block from '../../core/Block'
+import buttonTmpl from './button.hbs';
+import Block from '../../core/Block';
 
 export type ButtonProps = {
-  class?: string
-  type?: string
-  title?: string
+  class?: string;
+  type?: string;
+  title?: string;
+  disabled?: boolean;
   events?: {
-    click?: (event?: Event) => void
-    submit?: (event?: Event) => void
-  }
-}
+    click?: (event?: Event) => void;
+    submit?: (event?: Event) => void;
+  };
+};
 
 export class Button extends Block<ButtonProps> {
   render() {
-    return this.compile(buttonTmpl, { ...this.props })
+    return this.compile(buttonTmpl, { ...this.props });
   }
 }

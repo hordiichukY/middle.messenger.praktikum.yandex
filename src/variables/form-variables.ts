@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid'
-import { FormInputProps } from '../components/ui-form/form-input'
+import { nanoid } from 'nanoid';
+import { FormInputProps } from '../components/ui-form/form-input';
 
 export const LoginInputsProps: FormInputProps[] = [
   {
@@ -18,7 +18,7 @@ export const LoginInputsProps: FormInputProps[] = [
     error: 'Password is not correct',
     id: nanoid(6),
   },
-]
+];
 
 export const RegistrtationInputProps: FormInputProps[] = [
   {
@@ -77,7 +77,7 @@ export const RegistrtationInputProps: FormInputProps[] = [
     error: 'Passwords do not match',
     id: nanoid(6),
   },
-]
+];
 
 export const profileInputProps = [
   {
@@ -139,7 +139,7 @@ export const profileInputProps = [
     error: 'Invalid phone number',
     disabled: 'disabled',
   },
-]
+];
 
 export const profilePasswordProps = [
   {
@@ -171,4 +171,4 @@ export const profilePasswordProps = [
     error: 'Passwords do not match',
     disabled: '',
   },
-]
+];

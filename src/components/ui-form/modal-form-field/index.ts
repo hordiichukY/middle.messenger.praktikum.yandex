@@ -1,1 +1,1 @@
-export { ModalFormField } from './modal-form-field.templ'
+export { ModalFormField } from './modal-form-field.templ';

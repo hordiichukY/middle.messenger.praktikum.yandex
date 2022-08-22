@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgb(0 0 0 / 40%);
   display: none;
   justify-content: center;
   align-items: center;
@@ -29,6 +29,7 @@
 
   &__title {
     @include text(15px, 20px, 500);
+
     color: $dark;
     text-align: center;
     margin: 0 0 27px;
@@ -55,7 +56,9 @@
     right: 20px;
     width: 200px;
     height: 60px;
+
     @include text(16px, 20px, 500);
+
     background-color: $light;
     padding: 10px;
     border-radius: 20px;

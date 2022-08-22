@@ -1,16 +1,16 @@
-import linkTmpl from './link.hbs'
-import Block from '../../core/Block'
+import linkTmpl from './link.hbs';
+import Block from '../../core/Block';
 
 export type LinkProps = {
-  class?: string
-  title: string
+  class?: string;
+  title: string;
   events?: {
-    click: () => void
-  }
-}
+    click: () => void;
+  };
+};
 
 export class Link extends Block<LinkProps> {
   render() {
-    return this.compile(linkTmpl, { ...this.props })
+    return this.compile(linkTmpl, { ...this.props });
   }
 }

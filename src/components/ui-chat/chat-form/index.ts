@@ -1,1 +1,1 @@
-export { ChatForm } from './chat-form.tmpl'
+export { ChatForm } from './chat-form.tmpl';

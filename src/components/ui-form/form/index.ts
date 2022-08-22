@@ -1,1 +1,1 @@
-export { Form } from './form.templ'
+export { Form } from './form.templ';

@@ -1,1 +1,1 @@
-export { Modal } from './modal.templ'
+export { Modal } from './modal.templ';

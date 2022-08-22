@@ -1,22 +1,22 @@
-import { isArrayOrObject, PlainObject } from './helpers'
+import { isArrayOrObject, PlainObject } from './helpers';
 
 export function isEqual(lhs: PlainObject, rhs: PlainObject) {
   if (Object.keys(lhs).length !== Object.keys(rhs).length) {
-    return false
+    return false;
   }
 
   for (const [key, value] of Object.entries(lhs)) {
-    const rightValue = rhs[key]
+    const rightValue = rhs[key];
     if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
       if (isEqual(value as PlainObject, rightValue as PlainObject)) {
-        continue
+        continue;
       }
-      return false
+      return false;
     }
 
     if (value !== rightValue) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }

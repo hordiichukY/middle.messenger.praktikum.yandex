@@ -5,14 +5,16 @@
     display: block;
     border-radius: 100px;
     border: none;
-    background-image: url('../../static/icons/bars.svg');
+    background-image: url("../../static/icons/bars.svg");
     background-repeat: no-repeat;
     background-size: 12px 12px;
     background-position: center;
     cursor: pointer;
+
     &:hover {
       opacity: 0.7;
     }
+
     .is-open-true & {
       background-color: $accentColor;
     }
@@ -24,12 +26,12 @@
     right: 16px;
     display: none;
     gap: 10px;
-
     padding: 14px;
     min-width: 210px;
     background-color: $light;
     border-radius: 12px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+
     .is-open-true & {
       display: grid;
     }
@@ -41,7 +43,9 @@
     border: none;
     background: none;
     text-align: left;
+
     @include text(14px, $dark, 500);
+
     cursor: pointer;
 
     &:hover {
@@ -49,7 +53,7 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       width: 22px;
       height: 22px;
       margin-right: 10px;
@@ -57,17 +61,19 @@
       background-position: center;
       border-radius: 100%;
     }
+
     &.is-add {
       &::before {
         background-size: 15px;
-        background-image: url('../../static/icons/add.svg');
+        background-image: url("../../static/icons/add.svg");
         border: 2px solid $accentColor;
       }
     }
+
     &.is-delete {
       &::before {
         background-size: 10px;
-        background-image: url('../../static/icons/delete.svg');
+        background-image: url("../../static/icons/delete.svg");
         border: 2px solid $errorColor;
       }
     }

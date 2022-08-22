@@ -1,1 +1,5 @@
-<p class='form-input__error form-input__error_{{modifier}}'>{{error}}</span>
+{{#if showError}}
+  <p class='form-input__error'>{{error}}</p>
+{{else}}
+  <p class='form-input__error form-input__error_hidden'></p>
+{{/if}}

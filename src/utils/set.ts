@@ -1,5 +1,5 @@
-import { merge } from './merge'
-import { isPlainObject, PlainObject } from './helpers'
+import { merge } from './merge';
+import { isPlainObject, PlainObject } from './helpers';
 
 export function set(
   object: PlainObject | unknown,
@@ -7,11 +7,11 @@ export function set(
   value: unknown
 ): PlainObject | unknown {
   if (!isPlainObject(object)) {
-    return object
+    return object;
   }
 
   if (typeof path !== 'string') {
-    throw new Error('path must be string')
+    throw new Error('path must be string');
   }
 
   const result = path.split('.').reduceRight<PlainObject>(
@@ -19,6 +19,6 @@ export function set(
       [key]: acc,
     }),
     value as any
-  )
-  return merge(object as PlainObject, result)
+  );
+  return merge(object as PlainObject, result);
 }

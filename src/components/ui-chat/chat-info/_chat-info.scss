@@ -1,11 +1,17 @@
 .chat-info {
+  position: sticky;
+  top: 0;
+  background-color: $light;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 54px;
-  margin: 0 16px 0 25px;
+  padding: 0 16px 0 25px;
   border-bottom: 1px solid $chatColor;
+
   @include text(13px, $dark, 600, 15px);
+
+  z-index: 5;
 
   &__name {
     display: flex;
@@ -19,6 +25,7 @@
     object-fit: cover;
     border-radius: 100%;
     margin-right: 10px;
+
     &.is-empty {
       background-color: $chatColor;
     }
